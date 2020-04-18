@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Franchisee` (
   `contact number` VARCHAR(15) NULL,
   `admin` TINYINT NULL,
   `entrance fee` TINYINT NULL,
+  `password` VARCHAR(500) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
