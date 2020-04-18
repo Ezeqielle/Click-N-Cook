@@ -7,7 +7,8 @@ function createToken(){
     return $token;
 }
 
-function login($user){
+/* Franchisee functions */
+function loginFranchisee($user){
     $token = createToken();
     $_SESSION["token"] = $token;
     $_SESSION["id"] = $user["id"];
@@ -19,7 +20,7 @@ function login($user){
     $pdo->query($query);
 }
 
-function isConnected(){
+function isConnectedFranchisee(){
     if(!empty($_SESSION["token"]) && !empty($_SESSION["id"]) && !empty($_SESSION["email"])){
         $query = "SELECT id FROM franchisee WHERE token = '".$_SESSION["token"]."' AND id = '".$_SESSION["id"]."' AND email = '".$_SESSION["email"]."'";
         $pdo = connectDB();
@@ -28,9 +29,22 @@ function isConnected(){
 
         if(!empty($result)){
             $user = ["id"=>$_SESSION["id"], "email"=>$_SESSION["email"]];
-            login($user);
+            loginFranchisee($user);
             return true;
         }
     }
     return false;
+}
+
+function isAdmin(){
+
+}
+
+/* Clients functions */
+function loginClients(){
+
+}
+
+function isConnectedClients(){
+
 }
