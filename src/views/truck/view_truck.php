@@ -1,4 +1,4 @@
 <?php
 
 require "../../../bdd/connection.php";
-require "../../../assests/functions/functions.php";
+require "../../../assets/functions/functions.php";
