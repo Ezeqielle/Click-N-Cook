@@ -30,7 +30,7 @@ if(isset($_SESSION["errors"])){
 
 <!--navigation-->
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow fixed-top">
-    <a href="../../index.html" class="myBRAND"><img src="../../assets/imgs/logo_navbar.png" class="d-inline-block align-top" alt=""></a>
+    <a href="../../index.html" class="myBRAND"><img src="../../assets/imgs/logo.png" class="d-inline-block align-top" alt=""></a>
     <h5 class="my-0 mr-md-auto font-weight-normal"><strong>Click'n Coock</strong></h5>
     <nav class="my-2 my-md-0">
         <a class="btn btn-outline-primary" href="view_login.php">Sign in</a>
