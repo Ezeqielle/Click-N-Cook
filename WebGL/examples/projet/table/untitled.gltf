@@ -1,0 +1,235 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.1.46",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                9
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "Box021_Colours_0"
+        },
+        {
+            "children" : [
+                0
+            ],
+            "name" : "Node.010",
+            "rotation" : [
+                0.38268351554870605,
+                0,
+                -0.9238795042037964,
+                2.889179917531237e-08
+            ],
+            "scale" : [
+                0.2528412640094757,
+                2.211914539337158,
+                0.3989716172218323
+            ],
+            "translation" : [
+                7.6715407371521,
+                22.431751251220703,
+                -7.671539783477783
+            ]
+        },
+        {
+            "children" : [
+                1
+            ],
+            "name" : "Box021",
+            "rotation" : [
+                -0.6830127239227295,
+                -0.18301273882389069,
+                0.18301273882389069,
+                0.6830126643180847
+            ],
+            "translation" : [
+                -74.35089874267578,
+                6.658151626586914,
+                -0.9843169450759888
+            ]
+        },
+        {
+            "name" : "Spot001.Target",
+            "rotation" : [
+                -0.7071068286895752,
+                0,
+                0,
+                0.7071067094802856
+            ]
+        },
+        {
+            "children" : [
+                2,
+                3
+            ],
+            "name" : "RootNode"
+        },
+        {
+            "children" : [
+                4
+            ],
+            "name" : "Node"
+        },
+        {
+            "children" : [
+                5
+            ],
+            "name" : "4c2b81f9515c4c6cab9b71d9f87c0a0e.fbx",
+            "rotation" : [
+                0.7071068286895752,
+                0,
+                0,
+                0.7071068286895752
+            ]
+        },
+        {
+            "children" : [
+                6
+            ],
+            "name" : "RootNode (model correction matrix)"
+        },
+        {
+            "children" : [
+                7
+            ],
+            "name" : "RootNode (gltf orientation matrix)",
+            "rotation" : [
+                -0.7071068286895752,
+                0,
+                0,
+                0.7071068286895752
+            ]
+        },
+        {
+            "children" : [
+                8
+            ],
+            "name" : "Yup2Zup",
+            "rotation" : [
+                0.7071067690849304,
+                0,
+                0,
+                0.7071067690849304
+            ]
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                0,
+                0,
+                0
+            ],
+            "name" : "Colours",
+            "pbrMetallicRoughness" : {
+                "baseColorTexture" : {
+                    "index" : 0,
+                    "texCoord" : 0
+                },
+                "metallicFactor" : 0.2883003056049347,
+                "roughnessFactor" : 0.8929713368415833
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Box021_Colours_0",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "textures" : [
+        {
+            "source" : 0
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/png",
+            "name" : "Colours_baseColor",
+            "uri" : "Colours_baseColor.png"
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 513,
+            "max" : [
+                45.86844253540039,
+                10.253534317016602,
+                56.26123046875
+            ],
+            "min" : [
+                -45.86845779418945,
+                1.6004362106323242,
+                -1.8754158020019531
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 513,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 513,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 2040,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 6156,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 6156,
+            "byteOffset" : 6156
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 4104,
+            "byteOffset" : 12312
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 4080,
+            "byteOffset" : 16416
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 20496,
+            "uri" : "untitled.bin"
+        }
+    ]
+}
