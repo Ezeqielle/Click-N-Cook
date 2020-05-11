@@ -50,7 +50,7 @@ if(isset($_SESSION["errors"])){
                 <h1 class="mb-1 text-center">Sign up</h1>
 
                 <!--FORMULAIRE-->
-                <form action="../../assets/functions/addUser.php" method="POST">
+                <form action="../../assets/functions/addFranchisee.php" method="POST">
                     <form>
                         <div class="form-row">
                             <!-- firstName-->
@@ -93,14 +93,14 @@ if(isset($_SESSION["errors"])){
                             </div>
                             <!--PASSWORD 8 caractères - 1 majuscule - 1 chiffre-->
                             <div class="form-group col-md-6">
-                                <label for="inputPassword4">Password <span class="pswd">(8 characters 1 number 1 uppercase)<span class="required">*</span></label>
+                                <label for="inputPassword">Password <span class="pswd">(8 characters 1 number 1 uppercase)<span class="required">*</span></label>
                                 <input type="password" id="inputPassword"
                                        name="inputPassword" class="form-control"
                                        placeholder="Password" required="required">
                             </div>
                             <!--confirm password-->
                             <div class="form-group col-md-6">
-                                <label for="inputPassword4">Confirm Password<span class="required">*</span></label>
+                                <label for="inputConfirmPassword">Confirm Password<span class="required">*</span></label>
                                 <input type="password" id="confirmPassword" name="confirmPassword"
                                        class="form-control"
                                        placeholder="Confirm password"
