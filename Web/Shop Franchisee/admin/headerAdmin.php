@@ -1,12 +1,8 @@
 <?php
 
-require_once "../bdd/conf.inc.php";
+require_once "../bdd/connection.php";
+$db = connectDB();
 
-try{
-    $db = new PDO(DBDRIVER . ":host=" . DBHOST . ";dbname=" . DBNAME, DBUSER, DBPWD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-} catch(Exception $e){
-	die('Erreur : '.$e->getMessage());
-}
 ?>
 <!DOCTYPE html>
 <html>

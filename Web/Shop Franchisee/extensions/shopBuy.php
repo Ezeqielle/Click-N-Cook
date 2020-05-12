@@ -1,6 +1,6 @@
 <?php
-session_start();
-if(isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
+//session_start();
+//if(isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
 
 	if(isset($_GET['requestForm'])) {
 
@@ -103,8 +103,8 @@ if(isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
 			http_response_code(400);
 		}
 	}
-} else {
+/*} else {
 	echo '<img src="https://http.cat/401" alt="not found">';
 	//header('Location: ../login/login.php');
 	exit;
-}
+}*/

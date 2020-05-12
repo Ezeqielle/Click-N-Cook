@@ -1,11 +1,7 @@
 <?php
 //session_start();
-require_once "../bdd/conf.inc.php";
-try {
-    $db = new PDO(DBDRIVER . ":host=" . DBHOST . ";dbname=" . DBNAME, DBUSER, DBPWD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-} catch(Exception $e) {
-	die('Erreur : '.$e->getMessage());
-}
+require_once "../bdd/connection.php";
+$db = connectDB();
 
 //on vérifie que les données soit bien recus et on affiche pour la recherche
 if(isset($_POST['product'])) {
