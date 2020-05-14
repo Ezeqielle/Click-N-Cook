@@ -29,6 +29,12 @@ $dataMaintenance = $queryMaintenance->fetchAll(PDO::FETCH_OBJ);
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+    <link rel="stylesheet" href="../../../assets/css/bo_view.css">
+
+
 </head>
 <body>
 
@@ -41,69 +47,91 @@ if(isset($_SESSION["errors"])){
     echo "</div>";
 }
 ?>
+
     <div class="container">
-        <div class="row">
-            <form action="../../assets/functions/addUser.php" method="POST">
-                <div class="form-row">
-                    <!-- ID -->
-                    <div class="form-group col-md-4">
-                        <label for="inputID">Truck ID :</label>
-                        <p type="text" id="id"
-                               name="id"
-                               class="form-control"
-                               placeholder="id"
-                               required="required"
-                               autofocus="autofocus"
-                               value="<?php echo (isset($_SESSION["errorsInput"]))?$_SESSION["errorsInput"]["id"]:"";?>">
-                    </div>
-                    <!-- location -->
-                    <div class="form-group col-md-4">
-                        <label for="inputLocation">Location :</label>
-                        <p type="text" id="location"
-                               name="location"
-                               class="form-control"
-                               placeholder="location"
-                               required="required"
-                               autofocus="autofocus"
-                               value="<?php echo (isset($_SESSION["errorsInput"]))?$_SESSION["errorsInput"]["location"]:"";?>">
-                    </div>
-                    <!-- id franchisee -->
-                    <div class="form-group col-md-4">
-                        <label for="inputIdFranchisee">Franchisee Name :</label>
-                        <p type="text" id="franchisee"
-                               name="franchisee"
-                               class="form-control"
-                               placeholder="franchisee"
-                               required="required"
-                               autofocus="autofocus"
-                               value="<?php echo (isset($_SESSION["errorsInput"]))?$_SESSION["errorsInput"]["franchisee"]:"";?>">
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <!-- maintenance -->
-            <section class="listArray">
-                <table class="table">
-                    <tbody class="thread-dark">
-                        <?php foreach ($dataMaintenance as $DASHBOARD_response) : ?>
-                        <tr id="<?php $DASHBOARD_response->id ?>">
-                            <th scope="row"><?php echo $DASHBOARD_response->id ?></th>
-                            <td><?php echo $DASHBOARD_response->date ?></td>
-                            <td><?php echo $DASHBOARD_response->garageName ?></td>
-                            <td><?php echo $DASHBOARD_response->age ?></td>
-                            <td><?php echo $DASHBOARD_response->mileage ?></td>
-                            <td><?php echo $DASHBOARD_response->price ?></td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </section>
-        </div>
-    </div>
+
+        <h1 id="title-01" class="display-3 text-bold">Truck dashboard</h1>
+
+<!--        NAV-->
+
+        <div class="button-007 d-flex flex-row-reverse">
+            <button type="button" class="btn btn-info">Update</button>
+            <button type="button" class="upsetclass btn btn-warning">edit</button>
+            <button type="button" class="btn btn-danger">delete</button>
+        </div><!-- end button -->
 
 
+<!--        JUMBOTRON-->
+
+
+        <div id="jumbo-01" class="jumbotron">
+            <h2 class="display-5">info</h2>
+            <hr class="my-4">
+
+            <div class="d-flex justify-content-center align-items-stretch">
+
+                <div class="p-2 nfo">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-danger">Identification</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Id : 345</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">Car licence plate : Bo 345 AA</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-success">Franchisee : Jerome</a>
+                    </div><!--End list-group -->
+                </div><!-- end nfo-->
+
+                <div class="maintenance p-2">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-danger">Maintenance</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-primary">12/12/2012</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">12/01/2011</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-light">more...</a>
+                    </div><!--End list-group -->
+                </div><!--end maintenance-->
+
+                <div class="doc p-2">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-danger">docs</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Carte grise</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">Assurance</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-success">Livret</a>
+                    </div><!--End list-group -->
+                </div><!--end doc-->
+
+            </div><!-- end flex-->
+
+
+        </div><!--End Jumbo info-->
+
+        <div id="jumbo-02" class="jumbotron">
+            <h2 class="display-5">dashboard</h2>
+            <hr class="my-4">
+            <div class="d-flex justify-content-center align-items-stretch">
+
+                <div class="Invoice p-2">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-danger">Invoices</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-primary">01/01/2020</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">12/01/2019</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-success">12/01/1999</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-light">more</a>
+                    </div><!--End list-group -->
+                </div><!--end Invoice-->
+                <div class="stat p-2 ">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-danger">Stat</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-light">
+                            <canvas id="pieChart"></canvas>
+                        </a>
+                    </div><!--End list-group -->
+                </div><!--end stat-->
+            </div><!--end  d-flex -->
+        </div><!--end jumbo dashboard -->
+
+
+
+
+    </div><!--End container -->
+
+    <script src="../../../assets/js/pie_chart.js"></script>
 </body>
 </html>
