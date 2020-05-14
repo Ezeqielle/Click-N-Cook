@@ -1,28 +1,35 @@
 <?php
-session_start();
-require('callDatabase.php');
+//session_start();
+require_once "../bdd/connection.php";
+$db = connectDB();
 
 //on vérifie que les données soit bien recus et on affiche pour la recherche
 if(isset($_POST['product'])) {
 	$product = (String) trim($_POST['product']);
 
-	$reqProduct = $db->prepare('SELECT name, stock, price FROM PRODUCT WHERE name LIKE ?');
-	$reqProduct->execute(array("$product%"));
+    $reqProduct = $db->prepare('SELECT * FROM ITEM WHERE name LIKE ? AND product_status = true AND (SELECT quantity FROM BELONGIN WHERE quantity > 0 AND BELONGIN.idItem = ITEM.id)');
+    $reqProduct->execute(array("$product%"));
 	$productDatas = $reqProduct->fetchALL();
 
-	//s'il existe des users on les affiche sinon on affiche un message
+
 	if($productDatas != NULL) {
 		foreach($productDatas as $productData) {
+            $reqQuantityProduct = $db->query('SELECT * FROM BELONGIN WHERE idItem = ' .$productData["id"]);
+            $quantityData = $reqQuantityProduct->fetch();
+
+            $reqWarehouse = $db->query('SELECT address FROM WAREHOUSE WHERE id = ' .$quantityData["idWarehouse"]);
+            $warehouseData = $reqWarehouse->fetch();
 			
 			echo '<article name="products" class="col-lg-4">';
-			echo $productData['name'] . '<br>';
-			echo $productData['stock'] . ' left<br>';
-			echo $productData['price'] . ' $<br>';
-				echo '<select name="' . $productData['name'] . '">';
-					for($i = 0; $i <= $productData['stock']; $i++) {
-						echo '<option value="' . $i . '">' . $i . '</option>';
-					}
-				echo '</select>';
+                echo $productData['name'] . '<br>';
+                echo $quantityData['quantity'] . ' left<br>';
+                echo $productData['price'] . ' $<br>';
+                echo $warehouseData['address'] . '<br>';
+                    echo '<select name="' . $productData['name'] . '">';
+                        for($i = 0; $i <= $quantityData['quantity']; $i++) {
+                            echo '<option value="' . $i . '">' . $i . '</option>';
+                        }
+                    echo '</select>';
 			echo '</article>';
 		}
 	} else {
@@ -36,15 +43,22 @@ if(isset($_POST['product'])) {
 	}
 }
 if(isset($_POST['reset'])) {
-	$reqProduct = $db->query('SELECT name, stock, price FROM PRODUCT');
-	
-	while($productData = $reqProduct->fetch()) {
+    $reqProduct = $db->query('SELECT * FROM ITEM WHERE product_status = true AND (SELECT quantity FROM BELONGIN WHERE quantity > 0 AND BELONGIN.idItem = ITEM.id)');
+
+    while($productData = $reqProduct->fetch()) {
+        $reqQuantityProduct = $db->query('SELECT * FROM BELONGIN WHERE idItem = ' .$productData["id"]);
+        $quantityData = $reqQuantityProduct->fetch();
+
+        $reqWarehouse = $db->query('SELECT address FROM WAREHOUSE WHERE id = ' .$quantityData["idWarehouse"]);
+        $warehouseData = $reqWarehouse->fetch();
+
 		echo '<article name="products" class="col-lg-4">';
 			echo $productData['name'] . '<br>';
-			echo $productData['stock'] . ' left<br>';
+			echo $quantityData['quantity'] . ' left<br>';
 			echo $productData['price'] . ' $<br>';
+            echo $warehouseData['address'] . '<br>';
 				echo '<select name="' . $productData['name'] . '">';
-					for($i = 0; $i <= $productData['stock']; $i++) {
+					for($i = 0; $i <= $quantityData['quantity']; $i++) {
 						echo '<option value="' . $i . '">' . $i . '</option>';
 					}
 				echo '</select>';

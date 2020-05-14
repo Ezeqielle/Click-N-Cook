@@ -3,13 +3,18 @@
 if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administrator'] == 1){
 	*/
 	require('headerAdmin.php');
-	/*
+
 	if(isset($_POST['delete'])){
-		$reqProduct = $db->prepare('DELETE FROM PRODUCT WHERE id = :id');
+        $reqQuantityProduct = $db->prepare('DELETE FROM BELONGIN WHERE idItem = :id');
+        $reqQuantityProduct->execute(array(
+            'id' => $_POST['productId']
+        ));
+
+		$reqProduct = $db->prepare('DELETE FROM ITEM WHERE id = :id');
 		$reqProduct->execute(array(
 			'id' => $_POST['productId']
 		));
-	}*/
+	}
 ?>
 <main>
 	<div class="row">
@@ -22,13 +27,9 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
 			<div class="row">
 				<article class="col-lg-12">
 					<input type="text" name="search" class="form-control search" id="searchShopAdmin" placeholder="Search">
-					<script type="text/javascript" src="../js/export.js"></script>
 					<a role="button" href="shopAddProduct.php" class="btn btn-default btn-sm">
 						Add a new product
 					</a>
-					<button type="button" id="download" class="btn btn-default btn-sm">
-						Download CSV file
-					</button>
 				</article>
 			</div>
 			<?php
@@ -36,8 +37,11 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
 
 			echo '<div class="row" id="result">';
 			while($productData = $reqProduct->fetch()){
-                $reqQuantityProduct = $db->query('SELECT quantity FROM BELONGIN WHERE idItem = ' .$productData["id"]);
+                $reqQuantityProduct = $db->query('SELECT * FROM BELONGIN WHERE idItem = ' .$productData["id"]);
                 $quantityData = $reqQuantityProduct->fetch();
+
+                $reqWarehouse = $db->query('SELECT address FROM WAREHOUSE WHERE id = ' .$quantityData["idWarehouse"]);
+                $warehouseData = $reqWarehouse->fetch();
 
 				echo '<article class="col-lg-4" id="products">';
 					echo '<form method="post">';
@@ -45,6 +49,7 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
                         echo $productData['name'] . '<br>';
                         echo $quantityData['quantity'] . ' left<br>';
                         echo $productData['price'] . ' $<br>';
+                        echo $warehouseData['address'] . '<br>';
                         echo '<input type="hidden" name="productId" value="' . htmlspecialchars($productData['id']) . '">';
                         echo '<button type="submit" name="delete" class="btn btn-default btn-sm">Delete</button><br>';
                         echo '<a class="btn btn-default btn-sm" href="shopModifyProduct.php?id=' . $productData['id'] . '">Modify</a>';
