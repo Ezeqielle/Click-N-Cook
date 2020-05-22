@@ -22,9 +22,9 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
 					}
 					if(isset($_GET['payment']) AND !empty($_GET['payment']) AND $_GET['payment'] == 'success') {
 						echo '<div class="alert alert-success alert-dismissible">
-								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
- 								<strong>Success!</strong> Your payment was successfully.
-							</div>';
+								  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+ 							      <strong>Success!</strong> Your payment was successfully.
+							  </div>';
 					}
 					?>
 					
@@ -41,7 +41,7 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
                 $reqWarehouse = $db->query('SELECT address FROM WAREHOUSE WHERE id = ' .$quantityData["idWarehouse"]);
                 $warehouseData = $reqWarehouse->fetch();
 
-                echo '<article class="col-lg-4" id="products">';
+                echo '<article name="products" class="col-lg-4">';
                     echo $productData['name'] . '<br>';
                     echo $quantityData['quantity'] . ' left<br>';
                     echo $productData['price'] . ' $<br>';
