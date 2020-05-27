@@ -11,7 +11,7 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
 			<div class="row">
 				<article class="col-lg-12">
 					<input type="text" name="search" class="form-control search" id="searchShop" placeholder="Search">
-					<button type="button" id="buy" class="btn btn-default btn-sm">BUY</button>
+					<button type="button" id="btn" class="btn btn-default btn-sm">BUY</button>
 					<?php
 					$reqExistOrder = $db->prepare('SELECT * FROM PURCHASE WHERE idFranchisee = :currentId AND date IS NULL');
 					$reqExistOrder->execute(array(
@@ -58,6 +58,44 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
             ?>
 		</section>
 	</div>
+	<script>
+        window.addEventListener("DOMContentLoaded", () => {
+            const btn = document.querySelector('#btn');
+            btn.addEventListener('click', event => {
+
+				const products = document.getElementsByName('products');
+				var productsArray = [];
+
+				//on boucle pour chercher tous les produits que l'utilisateur a choisi.
+				for(let i = 0; i < products.length; i++){
+					const productsSelect = products[i].lastChild;
+					const choice = productsSelect.selectedIndex;
+					if(productsSelect.options[choice].value > 0){
+						productsArray.push(productsSelect.name);
+						productsArray.push(productsSelect.options[choice].value);
+					}
+				}
+
+				//on transforme le tableau en chaîne de caractère pour pouvoir l'envoyer en POST.
+				productsArray = JSON.stringify(productsArray);
+
+				//on fait la requête seulement si le tableau est rempli c'est à dire supérieur à deux caractères -> [].
+				if(productsArray.length > 2){
+					$.ajax({
+						type: 'POST',
+						url: "http://localhost/Click-N-Cook/web/Shop%20Franchisee/extensions/insertOrderr.php",
+						data: {
+							productsArray: productsArray,
+						},
+						success: output => {
+							console.log(output);
+							window.location.replace('shopPayment.php');
+						}
+					})
+				};
+			});
+		});
+    </script>
 </main>
 <?php
 	include('../extensions/footer.php');

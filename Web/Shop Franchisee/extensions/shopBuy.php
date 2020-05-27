@@ -4,16 +4,18 @@
 
 	if(isset($_GET['requestForm'])) {
 
-		include('callDatabase.php');
-		$reqOrder = $db->prepare('SELECT * FROM ORDERR, PURCHASE, PRODUCT WHERE user = :currentId AND ORDERR.purchase = PURCHASE.bill_number AND ORDERR.product = PRODUCT.id AND date IS NULL');
+		require_once "../bdd/connection.php";
+		$db = connectDB();
+		
+		$reqOrder = $db->prepare('SELECT * FROM CONTAINSIN, PURCHASE, ITEM WHERE idFranchisee = :currentId AND CONTAINSIN.idPurchase = PURCHASE.bill_number AND CONTAINSIN.idItem = ITEM.id AND date IS NULL');
 		$reqOrder->execute(array(
-			'currentId' => $_SESSION['id']
+			'currentId' => /*$_SESSION['id']*/10
 		));
 		if($reqOrder->rowCount() > 0) {
 
 			$totalPrice = 0;
 			while($orderData = $reqOrder->fetch()) {
-				$totalPrice += $orderData['amount'] * $orderData['price'];
+				$totalPrice += $orderData['quantity'] * $orderData['price'];
 			}
 			echo '
 				<form>
@@ -31,10 +33,12 @@
 	}
 	if(isset($_GET['cancel'])) {
 
-		include('callDatabase.php');
-		$reqOrder = $db->prepare('SELECT * FROM ORDERR, PURCHASE, PRODUCT WHERE user = :currentId AND ORDERR.purchase = PURCHASE.bill_number AND ORDERR.product = PRODUCT.id AND date IS NULL');
+		require_once "../bdd/connection.php";
+		$db = connectDB();
+
+		$reqOrder = $db->prepare('SELECT * FROM CONTAINSIN, PURCHASE, ITEM WHERE idFranchisee = :currentId AND CONTAINSIN.idPurchase = PURCHASE.bill_number AND CONTAINSIN.idItem = ITEM.id AND date IS NULL');
 		$reqOrder->execute(array(
-			'currentId' => $_SESSION['id']
+			'currentId' => /*$_SESSION['id']*/10
 		));
 		if($reqOrder->rowCount() > 0) {
 
@@ -77,10 +81,12 @@
 	}
 	if(isset($_GET['submitPayment'])) {
 
-		include('callDatabase.php');
-		$reqOrder = $db->prepare('SELECT * FROM ORDERR, PURCHASE, PRODUCT WHERE user = :currentId AND ORDERR.purchase = PURCHASE.bill_number AND ORDERR.product = PRODUCT.id AND date IS NULL');
+		require_once "../bdd/connection.php";
+		$db = connectDB();
+
+		$reqOrder = $db->prepare('SELECT * FROM CONTAINSIN, PURCHASE, ITEM WHERE idFranchisee = :currentId AND CONTAINSIN.idPurchase = PURCHASE.bill_number AND CONTAINSIN.idItem = ITEM.id AND date IS NULL');
 		$reqOrder->execute(array(
-			'currentId' => $_SESSION['id']
+			'currentId' => /*$_SESSION['id']*/10
 		));
 
 		if($reqOrder->rowCount() > 0) {

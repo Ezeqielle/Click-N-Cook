@@ -3,7 +3,7 @@ function buy() {
 	$('#buy').click(function(e) {
 		e.preventDefault();
 		$.ajax({
-			url : 'http://meetzic.space/extensions/shopBuy.php',
+			url : "http://localhost/Click-N-Cook/web/Shop%20Franchisee/extensions/shopBuy.php",
 			data : 'requestForm',
 			success : function(data) {
 				const elem = $('#bill');
@@ -21,7 +21,7 @@ function buy() {
 function cancel() {
 	$('#cancel').click(function() {
 		$.ajax({
-			url : 'http://meetzic.space/extensions/shopBuy.php',
+			url : "http://localhost/Click-N-Cook/web/Shop%20Franchisee/extensions/shopBuy.php",
 			data : 'cancel',
 			success : function(data) {
 				const elem = $('#bill');
@@ -61,14 +61,14 @@ function submitPayment() {
 
 		if(cardNb && expiryDate && securityCode && address && checkLength) {
 			console.log('coucou');
-			/*$.ajax({
-				url : 'http://meetzic.space/extensions/shopBuy.php',
+			$.ajax({
+				url : "http://localhost/Click-N-Cook/web/Shop%20Franchisee/extensions/shopBuy.php",
 				data : 'submitPayment',
 				success : function() {
 					const elem = $('#bill');
-					window.location.replace('http://meetzic.space/shop.php?payment=success');
+					window.location.replace("http://localhost/Click-N-Cook/web/Shop%20Franchisee/franchisee/shop.php?payment=success");
 				}
-			});*/
+			});
 		}
 	});
 }

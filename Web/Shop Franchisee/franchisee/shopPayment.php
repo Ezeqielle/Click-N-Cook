@@ -15,6 +15,7 @@ if(isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
 					      <tr>
 					        <th>Product</th>
 					        <th>Unit price</th>
+					        <th>Address</th>
 					        <th>Amount</th>
 					        <th>Price with amount</th>
 					      </tr>
@@ -28,9 +29,13 @@ if(isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
 								'currentId' => /*$_SESSION['id']*/10
 							));
 							while($orderData = $reqOrder->fetch()) {
+
+								$reqWarehouse = $db->query('SELECT address FROM WAREHOUSE WHERE id = ' .$orderData["idWarehouse"]);
+                				$warehouseData = $reqWarehouse->fetch();
 								echo '<tr>';
 									echo '<td>' . $orderData['name'] . '</td>';
 									echo '<td>'	. $orderData['price'] . '$</td>';
+									echo '<td>' . $warehouseData['address'] . '</td>';
 									echo '<td>' . $orderData['quantity'] . '</td>';
 									echo '<td>' . $orderData['quantity'] * $orderData['price'] . '$</td>';
 									$totalPrice += $orderData['quantity'] * $orderData['price'];
@@ -38,6 +43,7 @@ if(isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
 							}
 							?>
 							<tr>
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
