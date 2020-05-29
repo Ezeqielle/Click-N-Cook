@@ -92,17 +92,20 @@
 		if($reqOrder->rowCount() > 0) {
 			$totalPrice = 0;
 			while($orderData = $reqOrder->fetch()) {
-				$totalPrice += $orderData['amount'] * $orderData['price'];
-				$reqUpdateStock = $db->prepare('UPDATE PRODUCT SET stock = :stock - :amount WHERE id = :productId');
+                $reqQuantityProduct = $db->query('SELECT quantity FROM BELONGIN WHERE idItem = ' .$orderData["id"]);
+                $quantityData = $reqQuantityProduct->fetch();
+
+				$totalPrice += $orderData['quantity'] * $orderData['price'];
+				$reqUpdateStock = $db->prepare('UPDATE BELONGIN SET quantity = :quantity WHERE idItem = :productId');
 				$reqUpdateStock->execute(array(
-					'stock' => $orderData['stock'],
-					'amount' => $orderData['amount'],
+					'quantity' => $quantityData['quantity'] - $orderData['quantity'],
 					'productId' => $orderData['id']
 				));
 			}
-			$reqUpdateDatePayment = $db->prepare('UPDATE PURCHASE SET date = NOW() WHERE user = :currentId');
+			$reqUpdateDatePayment = $db->prepare('UPDATE PURCHASE SET date = NOW(), price = :price WHERE idFranchisee = :currentId');
 			$reqUpdateDatePayment->execute(array(
-				'currentId' => $_SESSION['id']
+			    'price' => $totalPrice,
+				'currentId' => /*$_SESSION['id']*/10
 			));
 			exit;
 		} else {

@@ -3,7 +3,7 @@ function buy() {
 	$('#buy').click(function(e) {
 		e.preventDefault();
 		$.ajax({
-			url : "http://localhost/Click-N-Cook/web/Shop%20Franchisee/extensions/shopBuy.php",
+			url : "../extensions/shopBuy.php",
 			data : 'requestForm',
 			success : function(data) {
 				const elem = $('#bill');
@@ -21,7 +21,7 @@ function buy() {
 function cancel() {
 	$('#cancel').click(function() {
 		$.ajax({
-			url : "http://localhost/Click-N-Cook/web/Shop%20Franchisee/extensions/shopBuy.php",
+			url : "../extensions/shopBuy.php",
 			data : 'cancel',
 			success : function(data) {
 				const elem = $('#bill');
@@ -60,13 +60,13 @@ function submitPayment() {
 		const checkLength = $('#securityCode').val().length != 3 ? check('', '#securityCode', false) : true;
 
 		if(cardNb && expiryDate && securityCode && address && checkLength) {
-			console.log('coucou');
 			$.ajax({
-				url : "http://localhost/Click-N-Cook/web/Shop%20Franchisee/extensions/shopBuy.php",
+				url : "../extensions/shopBuy.php",
 				data : 'submitPayment',
-				success : function() {
+				success : function(data) {
+					console.log(data);
 					const elem = $('#bill');
-					window.location.replace("http://localhost/Click-N-Cook/web/Shop%20Franchisee/franchisee/shop.php?payment=success");
+					window.location.replace("../franchisee/shop.php?payment=success");
 				}
 			});
 		}

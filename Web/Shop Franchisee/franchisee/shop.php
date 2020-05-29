@@ -83,7 +83,7 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
 				if(productsArray.length > 2){
 					$.ajax({
 						type: 'POST',
-						url: "http://localhost/Click-N-Cook/web/Shop%20Franchisee/extensions/insertOrderr.php",
+						url: "../extensions/insertOrderr.php",
 						data: {
 							productsArray: productsArray,
 						},
