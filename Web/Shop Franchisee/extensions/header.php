@@ -14,7 +14,7 @@ $db = connectDB();
   		<link rel="stylesheet" type="text/css" href="../css/style.css">
   		<link rel="shortcut icon" href="../images/logo.png ">
 		<title>Click'N Cook</title>
-		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 		<script src="../js/popup.js" type="text/javascript"></script>
 		<script src="../js/searchShop.js" type="text/javascript"></script>
 	</head>

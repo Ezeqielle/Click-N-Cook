@@ -18,11 +18,8 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
 ?>
 <main>
 	<div class="row">
-		<div class="col-lg-3">
-			<?php
-			//include('../extensions/profileSection.php');
-			?>
-		</div>
+        <section class="col-lg-3">
+        </section>
 		<section class="col-lg-6">
 			<div class="row">
 				<article class="col-lg-12">
@@ -58,11 +55,6 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
 			}
 			$reqProduct->closeCursor();
 			echo '</div>';
-			?>
-		</section>
-		<section class="col-lg-3">
-			<?php
-			//include('../extensions/chat.php');
 			?>
 		</section>
 	</div>

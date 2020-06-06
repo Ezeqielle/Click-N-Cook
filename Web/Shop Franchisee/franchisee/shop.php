@@ -7,6 +7,8 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
 <script type="text/javascript" src="../js/shop.js"></script>
 <main>
 	<div class="row">
+        <section class="col-lg-3">
+        </section>
 		<section class="col-lg-6">
 			<div class="row">
 				<article class="col-lg-12">

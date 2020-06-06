@@ -23,7 +23,7 @@ if(isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
 					    <tbody>
 							<h1>Bill</h1>
 							<?php
-							$totalPrice = 0;
+                            $totalPrice = 0;
 							$reqOrder = $db->prepare('SELECT * FROM CONTAINSIN, PURCHASE, ITEM WHERE idFranchisee = :currentId AND CONTAINSIN.idPurchase = PURCHASE.bill_number AND CONTAINSIN.idItem = ITEM.id AND date IS NULL');
 							$reqOrder->execute(array(
 								'currentId' => /*$_SESSION['id']*/10
