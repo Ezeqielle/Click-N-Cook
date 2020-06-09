@@ -28,8 +28,8 @@ class facturePDF extends FPDF{
         parent::__construct();
         $this->SetMargins(0, 0, 0);
         $this->SetFont('Helvetica', '', 11);
-        $this->SetCreator('CReSeL CMS, module Boutique en ligne');
-        $this->SetAuthor('CReSeL');
+        $this->SetCreator('Click\'N Cook');
+        $this->SetAuthor('Click\'N Cook');
         $this->AliasNbPages();
         $this->template = array();
         $this->template['productHead'] = $this->templateArrayInit();
@@ -37,8 +37,8 @@ class facturePDF extends FPDF{
         $this->template['totalHead'] = $this->templateArrayInit();
         $this->template['total'] = $this->templateArrayInit();
         $this->elementLst = array('header'=> array(), 'content'=> array(), 'footer'=>array());
-        $this->elementAdd($atextAdr1, 'header', 'header');
-        $this->elementAdd($atextAdr2, 'client', 'header');
+        //$this->elementAdd($atextAdr1, 'header', 'header');
+        //$this->elementAdd($atextAdr2, 'client', 'header');
         $this->elementAdd($aFooter, 'footer', 'footer');
     }
 // - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -76,7 +76,7 @@ class facturePDF extends FPDF{
 // $aPage : texte à afiche devant le numéro de page
 // $aDate : date d'émission de la facture
     public function initFacture($aFacture='', $aDate='', $aPage=''){
-        $this->elementAdd($aFacture, 'infoFacture', 'header');
+        //$this->elementAdd($aFacture, 'infoFacture', 'header');
         $this->elementAdd($aDate, 'infoDate', 'header');
         $this->elementAdd($aPage, 'infoPage', 'header');
         $this->SetSubject($aFacture, true);
@@ -284,6 +284,9 @@ class facturePDF extends FPDF{
         }
         return $nl;
     }
+
+
+
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 // entete
 //
@@ -292,6 +295,7 @@ class facturePDF extends FPDF{
             $this->Image($this->logoUrl, $this->logoPosX, $this->logoPosY, $this->logoWidth);
             $this->Ln(12);
         }
+        $yMax = $this->GetY();
         // elements d'entete
         foreach($this->elementLst['header'] as $v){
             $yMax = max($yMax, $this->prepareLine($v['text'], $this->template[$v['id']]));
