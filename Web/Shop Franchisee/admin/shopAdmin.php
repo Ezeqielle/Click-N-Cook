@@ -27,6 +27,9 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
 					<a role="button" href="shopAddProduct.php" class="btn btn-default btn-sm">
 						Add a new product
 					</a>
+                    <a role="button" href="adminSalesHistory.php" class="btn btn-default btn-sm">
+                        Sales history
+                    </a>
 				</article>
 			</div>
 			<?php
