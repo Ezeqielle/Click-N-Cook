@@ -51,8 +51,8 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
                         echo $productData['price'] . ' $<br>';
                         echo $warehouseData['address'] . '<br>';
                         echo '<input type="hidden" name="productId" value="' . htmlspecialchars($productData['id']) . '">';
-                        echo '<button type="submit" name="delete" class="btn btn-default btn-sm">Delete</button><br>';
-                        echo '<a class="btn btn-default btn-sm" href="shopModifyProduct.php?id=' . $productData['id'] . '">Modify</a>';
+                        echo '<button type="submit" name="delete" class="btn btn-default btn-sm">Delete</button>';
+                        echo '   <a class="btn btn-default btn-sm" href="shopModifyProduct.php?id=' . $productData['id'] . '">Modify</a>';
                     echo '</form>';
                 echo '</article>';
 			}

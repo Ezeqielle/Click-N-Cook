@@ -66,7 +66,9 @@
 ?>
 <main>
 	<div class="row">
-		<section class="col-lg-12">
+        <section class="col-lg-3">
+        </section>
+        <section class="col-lg-6">
 			<div class="row">
 			<?php
 			echo '<article class="col-lg-12">';
@@ -95,7 +97,9 @@
 			echo '</article>';
 			?>
 			</div>
-		</section>
+        </section>
+        <section class="col-lg-3">
+        </section>
 	</div>
 </main>
 <?php

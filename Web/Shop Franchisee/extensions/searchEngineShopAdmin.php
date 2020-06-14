@@ -14,18 +14,22 @@ if(isset($_POST['product'])) {
 	//s'il existe des users on les affiche sinon on affiche un message
 	if($productDatas != NULL) {
 		foreach($productDatas as $productData) {
-            $reqQuantityProduct = $db->query('SELECT quantity FROM BELONGIN WHERE idItem = ' .$productData["id"]);
+            $reqQuantityProduct = $db->query('SELECT * FROM BELONGIN WHERE idItem = ' .$productData["id"]);
             $quantityData = $reqQuantityProduct->fetch();
 
-			echo '<article class="col-lg-4">';
+            $reqWarehouse = $db->query('SELECT address FROM WAREHOUSE WHERE id = ' .$quantityData["idWarehouse"]);
+            $warehouseData = $reqWarehouse->fetch();
+
+			echo '<article class="col-lg-4" id="products">';
 				echo '<form method="post">';
                     echo $productData['product_status'] == 0 ? '<font color="red"><strong>HIDDEN</strong></font><br>' : '';
 					echo $productData['name'] . '<br>';
 					echo $quantityData['quantity'] . ' left<br>';
 					echo $productData['price'] . ' $<br>';
+                    echo $warehouseData['address'] . '<br>';
 					echo '<input type="hidden" name="productId" value="' . htmlspecialchars($productData['id']) . '">';
-  					echo '<button type="submit" name="delete" class="btn btn-default btn-sm">Delete</button><br>';
-  					echo '<a class="btn btn-default btn-sm" href="shopModifyProduct.php?id=' . $productData['id'] . '">Modify</a>';
+  					echo '<button type="submit" name="delete" class="btn btn-default btn-sm">Delete</button>';
+  					echo '   <a class="btn btn-default btn-sm" href="shopModifyProduct.php?id=' . $productData['id'] . '">Modify</a>';
   				echo '</form>';
 			echo '</article>';
 		}
@@ -43,18 +47,22 @@ if(isset($_POST['reset'])) {
     $reqProduct = $db->query('SELECT * FROM ITEM');
 
     while($productData = $reqProduct->fetch()){
-        $reqQuantityProduct = $db->query('SELECT quantity FROM BELONGIN WHERE idItem = ' .$productData["id"]);
+        $reqQuantityProduct = $db->query('SELECT * FROM BELONGIN WHERE idItem = ' .$productData["id"]);
         $quantityData = $reqQuantityProduct->fetch();
 
-		echo '<article class="col-lg-4">';
+        $reqWarehouse = $db->query('SELECT address FROM WAREHOUSE WHERE id = ' .$quantityData["idWarehouse"]);
+        $warehouseData = $reqWarehouse->fetch();
+
+		echo '<article class="col-lg-4" id="products">';
 			echo '<form method="post">';
                 echo $productData['product_status'] == 0 ? '<font color="red"><strong>HIDDEN</strong></font><br>' : '';
 				echo $productData['name'] . '<br>';
 				echo $quantityData['quantity'] . ' left<br>';
 				echo $productData['price'] . ' $<br>';
+                echo $warehouseData['address'] . '<br>';
 				echo '<input type="hidden" name="productId" value="' . htmlspecialchars($productData['id']) . '">';
-					echo '<button type="submit" name="delete" class="btn btn-default btn-sm">Delete</button><br>';
-					echo '<a class="btn btn-default btn-sm" href="shopModifyProduct.php?id=' . $productData['id'] . '">Modify</a>';
+					echo '<button type="submit" name="delete" class="btn btn-default btn-sm">Delete</button>';
+					echo '   <a class="btn btn-default btn-sm" href="shopModifyProduct.php?id=' . $productData['id'] . '">Modify</a>';
 				echo '</form>';
 		echo '</article>';
 	}

@@ -1,30 +1,8 @@
-@font-face  {
-    font-family: 'Krub';
-    src: url('../fonts/Krub-Bold.ttf') format('truetype'),
-         url('../fonts/krub-bold-webfont.woff2') format('woff2'),
-         url('../fonts/krub-bold-webfont.woff') format('woff');
-    font-weight: bold;
-}
-@font-face  {
-    font-family: 'Krub';
-    src: url('../fonts/Krub-Italic.ttf') format('truetype'),
-         url('../fonts/krub-italic-webfont.woff2') format('woff2'),
-         url('../fonts/krub-italic-webfont.woff') format('woff');
-    font-weight: italic;
-}
-@font-face  {
-    font-family: 'Krub';
-    src: url('../fonts/Krub-Regular.ttf') format('truetype'),
-         url('../fonts/krub-regular-webfont.woff2') format('woff2'),
-         url('../fonts/krub-regular-webfont.woff') format('woff');
-    font-weight: normal;
-}
 html, body {
     height: 100%;
 }
 body {
-    font-family: Krub;
-    background-color: rgb(24, 24, 24);
+    background-color: rgb(78, 77, 78);
     width: 100%;
     display: table;
 }
@@ -37,10 +15,11 @@ main {
     margin-top: 50px;
 }
 article.col-lg-12, aside.col-lg-12, article.col-lg-6, aside.col-lg-6, article.col-lg-4, aside.col-lg-4, article.col-lg-3, aside.col-lg-3 {
-    background-color: white;
+    background-color: rgb(233, 236, 239);
     padding: 25px 40px;
     word-break: break-all;
 }
+
 textarea {
     resize: none;
     width: 100%;
@@ -49,31 +28,7 @@ article input, article select, article div {
     margin-bottom: 10px;
 }
 #products {
-    height: 310px;
-}
-#messages {
-    max-height: 320px;
-    max-width: 100%;
-    overflow-y: auto;
-    word-break: break-all;
-    text-align: left;
-}
-.profile-img-card {
-    max-width: 200px;
-    width: 60%;
-    height: 60%;
-    margin: auto;
-    display: block;
-    border-radius: 50%;
-}
-.profile-img-card-in-profil {
-    width: 192px;
-    margin: auto;
-    display: block;
-    border-radius: 50%;
-}
-.profile-img-card-in-profil img {
-    border-radius: 50%;
+    height: 270px;
 }
 .container {
     width: 100%;
@@ -94,29 +49,16 @@ input[type=file] {
     overflow: hidden;
     z-index: 2;
 }
-.control-fileupload {
-    display: block;
-    border: 1px solid #d6d7d6;
-    background: #FFF;
-    border-radius: 4px;
-    width: 100%;
-    height: 36px;
-    line-height: 36px;
-    padding: 0px 10px 2px 10px;
-    overflow: hidden;
-    position: relative;
-}
-.control-fileupload input:hover {
-    cursor: pointer;
-}
 [class*="col-"] {
-    background-color: rgb(24, 24, 24);
-    border: 10px solid rgb(24, 24, 24);
+    background-color: rgb(78, 77, 78);
+    border: 10px solid rgb(78, 77, 78);
     line-height: 35px;
     text-align: justify;
 }
 .navbar-inverse {
     border: none;
+    background-color: rgb(241, 171, 64);
+    color: rgb(38, 126, 184);
 }
 .nav {
     font-size: 20px;
@@ -125,8 +67,8 @@ input[type=file] {
     border-radius: 10px;
 }
 .form-control:focus {
-    box-shadow: inset 0 0 1px rgb(57, 173, 85),0 0 8px rgb(57, 173, 85) !important;
-    border-color: rgb(57, 173, 85) !important;
+    box-shadow: inset 0 0 1px rgb(38, 126, 184),0 0 8px rgb(38, 126, 184) !important;
+    border-color: rgb(38, 126, 184) !important;
 }
 .form-group {
     margin: 1.5px;
@@ -135,38 +77,59 @@ input[type=file] {
     font-size: 25px;
 }
 .btn {
-    background-color: rgb(57, 173, 85);
+    background-color: rgb(38, 126, 184);
     border-radius: 10px;
-    border-color: rgb(57, 173, 85);
+    border-color: rgb(38, 126, 184);
     transition: all 0.3s;
     color: white;
 }
 .btn:hover,
 .btn:active,
 .btn:focus {
-    background-color: rgba(57, 173, 85, 0.9);
-    border-color: rgba(57, 173, 85, 0.9);
+    background-color: rgba(38, 126, 184, 0.9);
+    border-color: rgba(38, 126, 184, 0.9);
     color: white;
     outline: none;
 }
 .btn:active:focus {
-    background-color: rgba(57, 173, 85, 0.9);
+    background-color: rgba(38, 126, 184, 0.9);
     outline: none;
 }
-.meetZic {
+.clickNCook {
     font-weight: 750;
     font-size: 20px;
 }
-.test {
+.footer {
     bottom: 0;
-    background-color: #222;
-    position: relative;
+    background-color: rgb(241, 171, 64);
+    position: fixed;
     width: 100%;
-    height: 100%;
+    height:50px;
 }
+
+.background-image {
+    position:fixed;
+    opacity: 0.5;
+    top:0;
+    left:0;
+    z-index:0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.logo-image {
+    height: 100%;
+    width: 100%;
+    margin-bottom: 10px;
+}
+#img {
+    z-index: 1;
+}
+
 .copyright {
-    font-size: 10px;
-    color: #9d9d9d;
+    font-size: 11px;
+    color: rgb(38, 126, 184);
     padding: 15px 15px;
     line-height: 20px;
 }

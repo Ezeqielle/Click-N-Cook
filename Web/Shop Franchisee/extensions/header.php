@@ -30,7 +30,7 @@ $db = connectDB();
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 							</button>
-							<a class="nav meetZic navbar-brand" href="" title="Go back home">Click'N Cook</a>
+							<a class="nav clickNCook navbar-brand" href="" title="Go back home">Click'N Cook</a>
 				        </div>
 				        <div id="navbar" class="collapse navbar-collapse">
 				          <ul class="nav navbar-nav">

@@ -48,21 +48,24 @@ function calculateOrderAmount($items) {
     ));
 
     if($reqOrder->rowCount() > 0) {
+        $totalPriceTva = 0;
         $totalPrice = 0;
         while($orderData = $reqOrder->fetch()) {
             $reqQuantityProduct = $db->query('SELECT quantity FROM BELONGIN WHERE idItem = ' .$orderData["id"]);
             $quantityData = $reqQuantityProduct->fetch();
 
             $totalPrice += $orderData['quantity'] * $orderData['price'];
+            $totalPriceTva += $orderData['quantity'] * ($orderData['price'] + (($orderData['price'] * 10) / 100));
             $reqUpdateStock = $db->prepare('UPDATE BELONGIN SET quantity = :quantity WHERE idItem = :productId');
             $reqUpdateStock->execute(array(
                 'quantity' => $quantityData['quantity'] - $orderData['quantity'],
                 'productId' => $orderData['id']
             ));
         }
+
         $reqUpdateDatePayment = $db->prepare('UPDATE PURCHASE SET date = NOW(), price = :price WHERE idFranchisee = :currentId AND date IS NULL');
         $reqUpdateDatePayment->execute(array(
-            'price' => $totalPrice,
+            'price' => number_format($totalPriceTva, 2),
             'currentId' => /*$_SESSION['id']*/10
         ));
 

@@ -1,6 +1,6 @@
 </div>
 <footer>
-	<div class="test">
+	<div class="footer">
 		<?php 
 		echo '<p class="copyright">Click\'N Cook © ' . date('Y') . '</p>'
 		?>

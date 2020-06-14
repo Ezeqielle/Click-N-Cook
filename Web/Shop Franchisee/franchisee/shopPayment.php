@@ -7,9 +7,9 @@ if(isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
 <script src="../js/shopPayment.js" type="text/javascript"></script>
 <main>
 	<div class="row">
-		<section class="col-lg-12">
+		<section class="col-lg-12"id="bill">
 			<div class="row">
-				<article class="col-lg-12" id="bill">
+				<article class="col-lg-12" >
 					<table class="table table-bordered table-striped">
 						<thead>
 					      <tr>
@@ -34,11 +34,11 @@ if(isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
                 				$warehouseData = $reqWarehouse->fetch();
 								echo '<tr>';
 									echo '<td>' . $orderData['name'] . '</td>';
-									echo '<td>'	. $orderData['price'] . '$</td>';
+									echo '<td>'	. number_format($orderData['price'] + (($orderData['price'] * 10) / 100), 2) . '€</td>';
 									echo '<td>' . $warehouseData['address'] . '</td>';
 									echo '<td>' . $orderData['quantity'] . '</td>';
-									echo '<td>' . $orderData['quantity'] * $orderData['price'] . '$</td>';
-									$totalPrice += $orderData['quantity'] * $orderData['price'];
+									echo '<td>' . number_format($orderData['quantity'] * ($orderData['price'] + (($orderData['price'] * 10) / 100)), 2) . '€</td>';
+									$totalPrice += $orderData['quantity'] * ($orderData['price'] + (($orderData['price'] * 10) / 100));
 								echo '</tr>';
 							}
 							?>
@@ -47,7 +47,7 @@ if(isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
 								<td></td>
 								<td></td>
 								<td></td>
-								<td><strong><?php echo 'Total price : ' . $totalPrice . '$';?></strong></td>
+								<td><strong><?php echo 'Total price : ' . number_format($totalPrice, 2) . '€';?></strong></td>
 							</tr>
 						</tbody>
 					</table>

@@ -35,7 +35,9 @@
 ?>
 <main>
 	<div class="row">
-		<section class="col-lg-6">
+		<section class="col-lg-3">
+        </section>
+        <section class="col-lg-6">
 			<div class="row">
 				<article class="col-lg-12">
 					<?php
@@ -80,6 +82,8 @@
 					?>
 				</article>
 			</div>
+        </section>
+        <section class="col-lg-3">
 		</section>
 	</div>
 </main>

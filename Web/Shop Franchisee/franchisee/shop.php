@@ -46,7 +46,7 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
                 echo '<article name="products" class="col-lg-4">';
                     echo $productData['name'] . '<br>';
                     echo $quantityData['quantity'] . ' left<br>';
-                    echo $productData['price'] . ' $<br>';
+                    echo number_format($productData['price'] + (($productData['price'] * 10) / 100), 2) . ' $<br>';
                     echo $warehouseData['address'] . '<br>';
                     echo '<select name="' . $productData['name'] . '">';
                         for($i = 0; $i <= $quantityData['quantity']; $i++) {

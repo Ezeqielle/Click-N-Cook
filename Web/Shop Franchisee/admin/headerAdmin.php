@@ -9,9 +9,11 @@ $db = connectDB();
 	<head>
 		<meta charset="utf-8">
 		<meta name="description" content="header for administrator page">
-		<link href="../bootstrap/docs/dist/css/bootstrap.css" rel="stylesheet">
-		<link href="../bootstrap/docs/dist/js/bootstrap.js" rel="stylesheet">
-  		<link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link href="../bootstrap/docs/dist/css/bootstrap.css" rel="stylesheet">
+        <link href="../bootstrap/docs/dist/js/bootstrap.js" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Georgia:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
   		<link rel="shortcut icon" href="../images/logo.png ">
 		<title>Click'N Cook</title>
 		<script src="../js/popup.js" type="text/javascript"></script>
@@ -31,7 +33,7 @@ $db = connectDB();
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 							</button>
-							<a class="nav meetZic navbar-brand" href="" title="Go back home">Click'N Cook</a>
+							<a class="nav clickNCook navbar-brand" href="" title="Go back home">Click'N Cook</a>
 				        </div>
 				        <div id="navbar" class="collapse navbar-collapse">
 				          <ul class="nav navbar-nav">
