@@ -5,7 +5,7 @@
         <div class="container-fluid" id="img">
             <img class="img-fluid background-image" src="../images/food.jpg">
         </div>
-        <div class="row" style="margin-bottom: 10px; width: 100%">
+        <div class="row" style="margin-bottom: 50px; width: 100%">
         </div>
         <div class="row" style="width: 100%;">
             <section style="border: none; background-color: unset;" class="col-lg-4">
@@ -37,8 +37,6 @@
             </article>
             <section style="border: none; background-color: unset" class="col-lg-4">
             </section>
-        </div>
-        <div class="row" style="margin-top: 10px; width: 100%">
         </div>
     </main>
 <?php

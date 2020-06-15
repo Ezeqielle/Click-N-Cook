@@ -11,7 +11,7 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
         </section>
 		<section class="col-lg-6">
 			<div class="row">
-				<article class="col-lg-12">
+				<article class="col-lg-12 radius">
 					<input type="text" name="search" class="form-control search" id="searchShop" placeholder="Search">
 					<button type="button" id="btn" class="btn btn-default btn-sm">BUY</button>
 					<?php
@@ -43,7 +43,7 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
                 $reqWarehouse = $db->query('SELECT address FROM WAREHOUSE WHERE id = ' .$quantityData["idWarehouse"]);
                 $warehouseData = $reqWarehouse->fetch();
 
-                echo '<article name="products" class="col-lg-4">';
+                echo '<article name="products" class="col-lg-4 radius">';
                     echo $productData['name'] . '<br>';
                     echo $quantityData['quantity'] . ' left<br>';
                     echo number_format($productData['price'] + (($productData['price'] * 10) / 100), 2) . ' $<br>';

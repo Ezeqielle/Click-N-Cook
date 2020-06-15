@@ -22,7 +22,7 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
         </section>
 		<section class="col-lg-6">
 			<div class="row">
-				<article class="col-lg-12">
+				<article class="col-lg-12 radius">
 					<input type="text" name="search" class="form-control search" id="searchShopAdmin" placeholder="Search">
 					<a role="button" href="shopAddProduct.php" class="btn btn-default btn-sm">
 						Add a new product
@@ -43,7 +43,7 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
                 $reqWarehouse = $db->query('SELECT address FROM WAREHOUSE WHERE id = ' .$quantityData["idWarehouse"]);
                 $warehouseData = $reqWarehouse->fetch();
 
-				echo '<article class="col-lg-4" id="products">';
+				echo '<article class="col-lg-4 radius" id="products">';
 					echo '<form method="post">';
 						echo $productData['product_status'] == 0 ? '<font color="red"><strong>HIDDEN</strong></font><br>' : '';
                         echo $productData['name'] . '<br>';

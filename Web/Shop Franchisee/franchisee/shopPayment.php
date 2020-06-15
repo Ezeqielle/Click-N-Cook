@@ -9,7 +9,7 @@ if(isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
 	<div class="row">
 		<section class="col-lg-12"id="bill">
 			<div class="row">
-				<article class="col-lg-12" >
+				<article class="col-lg-12 radius">
 					<table class="table table-bordered table-striped">
 						<thead>
 					      <tr>

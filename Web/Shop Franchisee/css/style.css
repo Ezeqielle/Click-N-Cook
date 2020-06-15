@@ -121,10 +121,14 @@ input[type=file] {
 .logo-image {
     height: 100%;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
 }
 #img {
     z-index: 1;
+}
+
+.radius {
+    border-radius: 50px;
 }
 
 .copyright {

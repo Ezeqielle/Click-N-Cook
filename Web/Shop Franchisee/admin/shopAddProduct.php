@@ -71,7 +71,7 @@
         <section class="col-lg-6">
 			<div class="row">
 			<?php
-			echo '<article class="col-lg-12">';
+			echo '<article class="col-lg-12 radius">';
 				echo '<form method="post">';
 					echo '<label>Name :</label><input name="name" class="form-control">';
 					echo '<label>Price :</label><input name="price" class="form-control">';

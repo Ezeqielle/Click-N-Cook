@@ -39,7 +39,7 @@
         </section>
         <section class="col-lg-6">
 			<div class="row">
-				<article class="col-lg-12">
+				<article class="col-lg-12 radius">
 					<?php
 					$reqProduct = $db->prepare('SELECT * FROM ITEM, BELONGIN WHERE id = :id');
 					$reqProduct->execute(array(

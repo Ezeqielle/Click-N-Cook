@@ -29,7 +29,7 @@
 	        <div class="row">
                 <section class="col-lg-4">
                 </section>
-				<article class="col-lg-4">
+				<article class="col-lg-4 radius">
                 <div class="sr-root">
                   <div class="sr-main">
                     <header class="sr-header">
@@ -81,7 +81,7 @@
 
 			echo '
                 <div class="row">
-                    <article class="col-lg-12" >
+                    <article class="col-lg-12 radius" >
                         <table class="table table-bordered table-striped">
                             <thead>
                               <tr>

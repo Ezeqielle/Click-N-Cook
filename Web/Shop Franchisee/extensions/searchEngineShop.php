@@ -20,7 +20,7 @@ if(isset($_POST['product'])) {
             $reqWarehouse = $db->query('SELECT address FROM WAREHOUSE WHERE id = ' .$quantityData["idWarehouse"]);
             $warehouseData = $reqWarehouse->fetch();
 			
-			echo '<article name="products" class="col-lg-4">';
+			echo '<article name="products" class="col-lg-4 radius">';
                 echo $productData['name'] . '<br>';
                 echo $quantityData['quantity'] . ' left<br>';
                 echo $productData['price'] . ' $<br>';
@@ -34,7 +34,7 @@ if(isset($_POST['product'])) {
 		}
 	} else {
 		?>
-		<article class="col-lg-12" style="background-color: white;">
+		<article class="col-lg-12 radius" style="background-color: white;">
 			<div style='font-size: 20px; text-align: center;'>
 				<strong>There is no product named as follows</strong>
 			</div>
@@ -52,7 +52,7 @@ if(isset($_POST['reset'])) {
         $reqWarehouse = $db->query('SELECT address FROM WAREHOUSE WHERE id = ' .$quantityData["idWarehouse"]);
         $warehouseData = $reqWarehouse->fetch();
 
-		echo '<article name="products" class="col-lg-4">';
+		echo '<article name="products" class="col-lg-4 radius">';
 			echo $productData['name'] . '<br>';
 			echo $quantityData['quantity'] . ' left<br>';
 			echo $productData['price'] . ' $<br>';
