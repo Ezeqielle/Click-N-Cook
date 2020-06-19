@@ -19,11 +19,11 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mydb`
+-- Database: `clickncook`
 --
 
 -- --------------------------------------------------------
-
+	
 --
 -- Table structure for table `belongin`
 --
