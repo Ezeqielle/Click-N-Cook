@@ -1,5 +1,48 @@
 <?php
-    require('../extensions/indexHeader.php');
+session_start();
+require('indexHeader.php');
+include('../extensions/lang.php');
+
+if(isset($_POST['search'])) {
+
+    $email = htmlspecialchars($_POST['email']);
+    if(isset($_POST['email']) AND !empty($_POST['email'])) {
+
+        $reqEmail = $db->prepare('SELECT email FROM FRANCHISEE WHERE email = :email');
+        $reqEmail->execute(array(
+            'email' => $email
+        ));
+        $emailDB = $reqEmail->fetch();
+        if($emailDB['email'] == $_POST['email']) {
+
+
+
+            $reqUser = $db->prepare('SELECT * FROM FRANCHISEE WHERE email = :email');
+            $reqUser->execute(array(
+                'email' => $email
+            ));
+            $userData = $reqUser->fetch();
+            $_SESSION['email'] = $userData['email'];
+            $_SESSION['name'] = $userData['lastName'];
+
+            header('Location: ../sendMail/passwordMailFranchisee.php');
+            exit;
+        } else {
+            if($_SESSION['lang'] == 'EN') {
+                $error = 'Wrong email!';
+            } else {
+                $error = 'Mauvais email !';
+            }
+        }
+    } else {
+        if($_SESSION['lang'] == 'EN') {
+            $error = 'Please fill in all the fields';
+        } else {
+            $error = 'Veuillez remplir tous les champs';
+        }
+    }
+}
+
 ?>
     <main>
         <div class="container-fluid" id="img">
@@ -22,7 +65,7 @@
                             <button class="btn btn-lg btn-primary btn-block btn-signin Forgot" href="#" type="submit" name="search">Continuer</button>
                         </form>
                         <center>
-                            <a href="index.php" class="option">Connexion</a>
+                            <a href="indexFranchisee.php" class="option">Connexion</a>
                         </center>
                         <?php
                         if(isset($error)) {
@@ -39,5 +82,5 @@
         </div>
     </main>
 <?php
-    include('../extensions/indexFooter.php');
+include('indexFooterFranchisee.php');
 ?>

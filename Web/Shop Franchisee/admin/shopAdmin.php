@@ -1,7 +1,7 @@
 <?php
-/*session_start();
+session_start();
 if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administrator'] == 1){
-	*/
+
 	require('headerAdmin.php');
 
 	if(isset($_POST['delete'])){
@@ -10,7 +10,7 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
             'id' => $_POST['productId']
         ));
 
-		$reqProduct = $db->prepare('DELETE FROM ITEM WHERE id = :id');
+		$reqProduct = $db->prepare('DELETE FROM item WHERE id = :id');
 		$reqProduct->execute(array(
 			'id' => $_POST['productId']
 		));
@@ -33,6 +33,7 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
 				</article>
 			</div>
 			<?php
+
 			$reqProduct = $db->query('SELECT * FROM ITEM');
 
 			echo '<div class="row" id="result">';
@@ -65,9 +66,9 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
 <?php
 	include('../extensions/footer.php');
 
-/*} else {
+} else {
 	echo '<img src="https://http.cat/401" alt="not found">';
-	header('Location: ../home.php');
+	header('Location: ../login/index.php');
 	exit;
-}*/
+}
 ?>

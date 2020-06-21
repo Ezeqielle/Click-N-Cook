@@ -1,63 +1,68 @@
 <?php
-/*session_start();
+session_start();
 if(isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
-*/
 
-require_once "../bdd/connection.php";
-$db = connectDB();
 
-if(isset($_POST['productsArray'])) {
-	$productsArray = json_decode($_POST['productsArray']);
+    require_once "../bdd/connection.php";
+    $db = connectDB();
 
-	$reqLastBill = $db->prepare('SELECT * FROM PURCHASE WHERE idFranchisee = :currentId AND date IS NULL');
-	$reqLastBill->execute(array(
-		'currentId' => /*$_SESSION['id']*/10
-	));
-	$lastBill = $reqLastBill->fetch();
+    if(isset($_POST['productsArray'])) {
+        $productsArray = json_decode($_POST['productsArray']);
 
-	if($reqLastBill->rowCount() == 1) {
-		$deleteOrders = $db->prepare('DELETE FROM CONTAINSIN WHERE idPurchase = :purchaseId');
-		$deleteOrders->execute(array(
-			'purchaseId' => $lastBill['bill_number']
-		));
+        $reqLastBill = $db->prepare('SELECT * FROM PURCHASE WHERE idFranchisee = :currentId AND date IS NULL');
+        $reqLastBill->execute(array(
+            'currentId' => $_SESSION['id']
+        ));
+        $lastBill = $reqLastBill->fetch();
 
-		$deleteNotUseBill = $db->prepare('DELETE FROM PURCHASE WHERE bill_number = :lastBill');
-		$deleteNotUseBill->execute(array(
-			'lastBill' => $lastBill['bill_number']
-		));
-	}
+        if($reqLastBill->rowCount() == 1) {
+            $deleteOrders = $db->prepare('DELETE FROM CONTAINSIN WHERE idPurchase = :purchaseId');
+            $deleteOrders->execute(array(
+                'purchaseId' => $lastBill['bill_number']
+            ));
 
-	$createBill = $db->prepare('INSERT INTO PURCHASE(idFranchisee) VALUES(:currentId)');
-	$createBill->execute(array(
-		'currentId' => /*$_SESSION['id']*/10
-	));
+            $deleteNotUseBill = $db->prepare('DELETE FROM PURCHASE WHERE bill_number = :lastBill');
+            $deleteNotUseBill->execute(array(
+                'lastBill' => $lastBill['bill_number']
+            ));
+        }
 
-	$billNumber = $db->lastInsertId();
+        $createBill = $db->prepare('INSERT INTO PURCHASE(idFranchisee) VALUES(:currentId)');
+        $createBill->execute(array(
+            'currentId' => $_SESSION['id']
+        ));
 
-	for($i = 0; $i < count($productsArray); $i += 2) {
-		$reqProduct = $db->prepare('SELECT * FROM ITEM WHERE name = :name');
-		$reqProduct->execute(array(
-			'name' => htmlspecialchars($productsArray[$i])
-		));
-		$productId = $reqProduct->fetch();
+        $billNumber = $db->lastInsertId();
 
-		$reqQuantityProduct = $db->query('SELECT * FROM BELONGIN WHERE idItem = ' .$productId["id"]);
-        $quantityData = $reqQuantityProduct->fetch();
+        for($i = 0; $i < count($productsArray); $i += 2) {
+            $reqProduct = $db->prepare('SELECT * FROM ITEM WHERE name = :name');
+            $reqProduct->execute(array(
+                'name' => htmlspecialchars($productsArray[$i])
+            ));
+            $productId = $reqProduct->fetch();
 
-		if($reqProduct->rowCount() == 1) {
+            $reqQuantityProduct = $db->query('SELECT * FROM BELONGIN WHERE idItem = ' .$productId["id"]);
+            $quantityData = $reqQuantityProduct->fetch();
 
-			//on vérifie que l'utilisateur n'a pas modifier le code HTML avec une quantité inexistante.
-			if($productsArray[$i + 1] > 0 AND $productsArray[$i + 1] <= $quantityData['quantity']) {
+            if($reqProduct->rowCount() == 1) {
 
-				$createOrder = $db->prepare('INSERT INTO CONTAINSIN VALUES(:idPurchase, :idItem, :quantity, :idWarehouse)');
-				$createOrder->execute(array(
-					'idPurchase' => $billNumber,
-					'idItem' => $productId['id'],
-					'quantity' => htmlspecialchars($productsArray[$i + 1]),
-					'idWarehouse' => $quantityData['idWarehouse']
-				));
-			}
-		}
-	}
+                //on vérifie que l'utilisateur n'a pas modifier le code HTML avec une quantité inexistante.
+                if($productsArray[$i + 1] > 0 AND $productsArray[$i + 1] <= $quantityData['quantity']) {
+
+                    $createOrder = $db->prepare('INSERT INTO CONTAINSIN VALUES(:idPurchase, :idItem, :quantity, :idWarehouse)');
+                    $createOrder->execute(array(
+                        'idPurchase' => $billNumber,
+                        'idItem' => $productId['id'],
+                        'quantity' => htmlspecialchars($productsArray[$i + 1]),
+                        'idWarehouse' => $quantityData['idWarehouse']
+                    ));
+                }
+            }
+        }
+    }
+} else {
+    echo '<img src="https://http.cat/401" alt="not found">';
+    header('Location: ../login/index.php');
+    exit;
 }
 ?>

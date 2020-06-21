@@ -1,7 +1,9 @@
 <?php
-/*session_start();
+ini_set('display_errors',1);
+error_reporting(E_ALL);
+session_start();
 if(isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
-*/
+
 	require('../extensions/header.php');
 ?>	
 <script src="../js/shopPayment.js" type="text/javascript"></script>
@@ -26,7 +28,7 @@ if(isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
                             $totalPrice = 0;
 							$reqOrder = $db->prepare('SELECT * FROM CONTAINSIN, PURCHASE, ITEM WHERE idFranchisee = :currentId AND CONTAINSIN.idPurchase = PURCHASE.bill_number AND CONTAINSIN.idItem = ITEM.id AND date IS NULL');
 							$reqOrder->execute(array(
-								'currentId' => /*$_SESSION['id']*/10
+								'currentId' => $_SESSION['id']
 							));
 							while($orderData = $reqOrder->fetch()) {
 
@@ -61,9 +63,9 @@ if(isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
 <?php
 	include('../extensions/footer.php');
 
-/*} else {
+} else {
 	echo '<img src="https://http.cat/401" alt="not found">';
-	header('Location: login/login.php');
+	header('Location: ../login/index.php');
 	exit;
-}*/
+}
 ?>

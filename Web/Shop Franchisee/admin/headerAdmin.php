@@ -12,7 +12,7 @@ $db = connectDB();
         <link href="../bootstrap/docs/dist/css/bootstrap.css" rel="stylesheet">
         <link href="../bootstrap/docs/dist/js/bootstrap.js" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../css/style.css">
-        <link href="https://fonts.googleapis.com/css?family=Georgia:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        <link href="../css/font.css">
 
   		<link rel="shortcut icon" href="../images/logo.png ">
 		<title>Click'N Cook</title>
@@ -37,8 +37,8 @@ $db = connectDB();
 				        </div>
 				        <div id="navbar" class="collapse navbar-collapse">
 				          <ul class="nav navbar-nav">
-								<li> 
-									<a <!--href=" $_SESSION['administrator'] == true ? 'shopAdmin.php' : 'shop.php'; ?>-->"
+								<li>
+                                    <a  href=" <?php $_SESSION['administrator'] == true ? '../admin/shopAdmin.php' : '../extensions/shop.php' ?>">;
 									class="glyphicon glyphicon-shopping-cart" 
 									title="Shop"
 									>
@@ -49,7 +49,7 @@ $db = connectDB();
 								<li> <a href="" class="glyphicon glyphicon-off"></a> </li>
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
-					        	<li> <a href="#" title="Change language"> <!-- $_SESSION['lang'] == 'FR' ? 'EN' : 'FR'; ?>--></a> </li>
+                                <li> <a href="#" class="glyphicon glyphicon-globe" title="Change language"> <?php $_SESSION['lang'] == 'FR' ? 'EN' : 'FR'; ?></a> </li>
 					        </ul>
 				        </div>
 			     	</div>

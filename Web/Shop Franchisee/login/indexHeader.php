@@ -24,8 +24,8 @@ $db = connectDB();
             <nav class="navbar navbar-inverse navbar-fixed-top">
                 <div class="container">
                     <div class="navbar-header">
-                        <p class="nav clickNCook navbar-brand">Click'N Cook</p>
+                        <a class="nav clickNCook navbar-brand" href="../login/indexFranchisee.php" title="Go back home">Click'N Cook</a>
                     </div>
                 </div>
             </nav>
-        </header><?php
+        </header>

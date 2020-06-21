@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors',1);
+error_reporting(E_ALL);
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Stripe\Stripe;
@@ -109,7 +111,6 @@ $app->get('/stripe-key', function (Request $request, Response $response, array $
 });
 
 $app->post('/pay', function(Request $request, Response $response) use ($app)  {
-  //$logger = $this->get('logger');
   $body = json_decode($request->getBody());
 
     $body->paymentIntentId = null;

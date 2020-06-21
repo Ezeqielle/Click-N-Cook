@@ -1,6 +1,8 @@
 <?php
-//session_start();
-//if(isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
+ini_set('display_errors',1);
+error_reporting(E_ALL);
+session_start();
+if(isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
     echo'
         <link rel="stylesheet" href="../stripeApi/client/css/global.css" />
         <script src="https://js.stripe.com/v3/"></script>
@@ -13,7 +15,7 @@
 		
 		$reqOrder = $db->prepare('SELECT * FROM CONTAINSIN, PURCHASE, ITEM WHERE idFranchisee = :currentId AND CONTAINSIN.idPurchase = PURCHASE.bill_number AND CONTAINSIN.idItem = ITEM.id AND date IS NULL');
 		$reqOrder->execute(array(
-			'currentId' => /*$_SESSION['id']*/10
+			'currentId' => $_SESSION['id']
 		));
 		if($reqOrder->rowCount() > 0) {
 			$totalPrice = 0;
@@ -75,7 +77,7 @@
 
         $reqOrder = $db->prepare('SELECT * FROM CONTAINSIN, PURCHASE, ITEM WHERE idFranchisee = :currentId AND CONTAINSIN.idPurchase = PURCHASE.bill_number AND CONTAINSIN.idItem = ITEM.id AND date IS NULL');
         $reqOrder->execute(array(
-            'currentId' => /*$_SESSION['id']*/10
+            'currentId' => $_SESSION['id']
         ));
 		if($reqOrder->rowCount() > 0) {
 
@@ -125,8 +127,8 @@
 			http_response_code(400);
 		}
 	}
-/*} else {
+} else {
 	echo '<img src="https://http.cat/401" alt="not found">';
-	//header('Location: ../login/login.php');
+	header('Location: ../login/index.php');
 	exit;
-}*/
+}

@@ -1,6 +1,6 @@
 <?php
-//session_start();
-//if(isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administrator'] == 1){
+session_start();
+if(isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administrator'] == 1){
 
 	require('headerAdmin.php');
 	if(isset($_POST['add'])){
@@ -105,9 +105,9 @@
 <?php
 include('../extensions/footer.php');
 
-/*} else {
+} else {
 	echo '<img src="https://http.cat/401" alt="not found">';
-	header('Location: ../home.php');
+	header('Location: ../login/index.php');
 	exit;
-}*/
+}
 ?>

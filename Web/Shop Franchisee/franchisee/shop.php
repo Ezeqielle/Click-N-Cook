@@ -1,7 +1,7 @@
 <?php
-/*session_start();
+session_start();
 if (isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
-	*/
+
 	require('../extensions/header.php');
 ?>
 <script type="text/javascript" src="../js/shop.js"></script>
@@ -17,7 +17,7 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
 					<?php
 					$reqExistOrder = $db->prepare('SELECT * FROM PURCHASE WHERE idFranchisee = :currentId AND date IS NULL');
 					$reqExistOrder->execute(array(
-						'currentId' => /*$_SESSION['id']*/ 10
+						'currentId' => $_SESSION['id']
 					));
 					if($reqExistOrder->rowCount() > 0) {
 						echo '<a href="shopPayment.php" class="btn btn-default btn-sm">Last Bill</a>';
@@ -102,9 +102,9 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
 <?php
 	include('../extensions/footer.php');
 
-/*} else {
+} else {
 	echo '<img src="https://http.cat/401" alt="not found">';
-	header('Location: login/login.php');
+	header('Location: ../login/index.php');
 	exit;
-}*/
+}
 ?>

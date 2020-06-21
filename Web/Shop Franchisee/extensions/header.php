@@ -35,18 +35,11 @@ $db = connectDB();
 				        <div id="navbar" class="collapse navbar-collapse">
 				          <ul class="nav navbar-nav">
 								<li>
-                                    <a <!--href=" $_SESSION['administrator'] == true ? 'shopAdmin.php' : 'shop.php'; ?>-->"
-                                    class="glyphicon glyphicon-shopping-cart"
-                                    title="Shop"
-                                    >
-                                    </a>
+                                    <a  href=" <?php $_SESSION['administrator'] == true ? '../admin/shopAdmin.php' : '../extensions/shop.php' ?>" class="glyphicon glyphicon-shopping-cart" title="Shop"></a>
                                 </li>
 							</ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li> <a href="" class="glyphicon glyphicon-off"></a> </li>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li> <a href="#" title="Change language"> <!-- $_SESSION['lang'] == 'FR' ? 'EN' : 'FR'; ?>--></a> </li>
                             </ul>
 				        </div>
 			     	</div>
