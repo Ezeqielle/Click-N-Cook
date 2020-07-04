@@ -26,15 +26,12 @@ $profil_data = $query->fetchAll(PDO::FETCH_OBJ);
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-        <link rel="stylesheet" href="../../../assets/css/bo_view.css">
-
     </head>
 
     <body>
         <div class="container">
             <section class="headerAdmin">
-                <h1>all franchise dashboard</h1>
+                <h1>All Franchisee</h1>
                 <a href="view_allTruck.php">Display all Truck</a>
             </section>
 
@@ -43,10 +40,9 @@ $profil_data = $query->fetchAll(PDO::FETCH_OBJ);
                     <thead class="thread-dark">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">First & last name</th>
                             <th scope="col">email</th>
-                            <th scope="col">phone number</th>
                             <th scope="col">statut</th>
+                            <th scope="col">Go To</th>
                             <th scope="col">delete</th>
                         </tr>
                     </thead>
@@ -56,6 +52,7 @@ $profil_data = $query->fetchAll(PDO::FETCH_OBJ);
                             <th scope="row"><?php echo $DASHBOARD_response->id ?></th>
                             <td><?php echo $DASHBOARD_response->email ?></td>
                             <td><button class="stat<?php echo $DASHBOARD_response->id ?> btn btn-dark btn-sm statut" data-stat = "<?php echo $DASHBOARD_response->admin ?>">admin</button></td>
+                            <td><a href="view_specFranchisee.php?idUser=<?php echo $DASHBOARD_response->id; ?>">Go To</a></td>
                             <td><button class="btn btn-danger btn-sm delete">Delete</button></td>
                         </tr>
                         <?php endforeach; ?>
