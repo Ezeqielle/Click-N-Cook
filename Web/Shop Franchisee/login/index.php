@@ -31,7 +31,7 @@ if(isset($_POST['signIn'])) {
                 $_SESSION['advantage'] = $userData['advantage'];
                 $_SESSION['address'] = $userData['address'];
                 $_SESSION['administrator'] = 2;
-                header('Location: ../franchisee/shop.php');
+                header('Location: ../client/viewShop.php');
                 exit;
             } else {
                 if($_SESSION['lang'] == 'EN') {
@@ -71,11 +71,11 @@ require('indexHeader.php');
                     <div class="card card-container">
                         <img class="profile-img-card logo-image" src="../images/logo.png" alt="logo.png not found"/>
                         <?php
-                            if(isset($_GET['change']) AND !empty($_GET['change']) AND $_GET['change'] == 'success') {
-                                echo '<div class="alert alert-success">
+                        if(isset($_GET['change']) AND !empty($_GET['change']) AND $_GET['change'] == 'success') {
+                            echo '<div class="alert alert-success">
                                 <strong>Succès!</strong> Votre changement de mot de passe a été effectué avec succès.
                             </div>';
-                            }
+                        }
                         ?>
                         <form action="index.php" method="post" class="form-signin">
                             <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email" value="<?= isset($email) ? $email : ''; ?>" autofocus>
@@ -98,5 +98,5 @@ require('indexHeader.php');
         </div>
     </main>
 <?php
-    include('indexFooter.php');
+include('indexFooter.php');
 ?>

@@ -3,7 +3,7 @@ session_start();
 require_once "../bdd/connection.php";
 $db = connectDB();
 include('../extensions/lang.php');
-if(isset($_POST['signIn'])) {
+if(isset($_POST['signInFranchisee'])) {
 
     $email = htmlspecialchars($_POST['email']);
     $password = $_POST['password'];
@@ -23,16 +23,24 @@ if(isset($_POST['signIn'])) {
             $userData = $requser->fetch();
 
             if($userData['active'] == true) {
-
-                $_SESSION['id'] = $userData['id'];
-                $_SESSION['email'] = $userData['email'];
-                $_SESSION['firstname'] = $userData['first name'];
-                $_SESSION['name'] = $userData['last name'];
-                $_SESSION['entranceFee'] = $userData['entrance fee'];
-                $_SESSION['address'] = $userData['address'];
-                $_SESSION['administrator'] = $userData['admin'];
-                header('Location: ../franchisee/shop.php');
-                exit;
+                if($userData['admin'] == true) {
+                    $_SESSION['id'] = $userData['id'];
+                    $_SESSION['email'] = $userData['email'];
+                    $_SESSION['firstname'] = $userData['first name'];
+                    $_SESSION['name'] = $userData['last name'];
+                    $_SESSION['administrator'] = $userData['admin'];
+                    header('Location: ../admin/shopAdmin.php');
+                    exit;
+                } else {
+                    $_SESSION['id'] = $userData['id'];
+                    $_SESSION['email'] = $userData['email'];
+                    $_SESSION['firstname'] = $userData['first name'];
+                    $_SESSION['name'] = $userData['last name'];
+                    $_SESSION['entranceFee'] = $userData['entrance fee'];
+                    $_SESSION['administrator'] = $userData['admin'];
+                    header('Location: ../franchisee/shop.php');
+                    exit;
+                }
             } else {
                 if($_SESSION['lang'] == 'EN') {
                     $error = 'Check your mails to activate your account';
@@ -77,10 +85,10 @@ require('indexHeader.php');
                             </div>';
                         }
                         ?>
-                        <form action="index.php" method="post" class="form-signin">
+                        <form action="indexFranchisee.php" method="post" class="form-signin">
                             <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email" value="<?= isset($email) ? $email : ''; ?>" autofocus>
                             <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password">
-                            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" name="signIn">Sign in</button>
+                            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" name="signInFranchisee">Sign in</button>
                         </form>
                         <center>
                             <a href="forgotFranchisee.php" class="option">Forgot the password ?</a>

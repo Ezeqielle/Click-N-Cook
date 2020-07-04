@@ -9,11 +9,12 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
 
 			if($_POST['quantity'] > 0){
 
-                $reqProduct = $db->prepare('UPDATE ITEM SET name = :name , price = :price , product_status = :product_status WHERE id = :previousId');
+                $reqProduct = $db->prepare('UPDATE ITEM SET name = :name , price = :price , product_status = :product_status, dish = :dish WHERE id = :previousId');
                 $reqProduct->execute(array(
                     'name' => $_POST['name'],
                     'price' => $_POST['price'],
                     'product_status' => $_POST['product_status'],
+                    'dish' => $_POST['typeOfFood'],
                     'previousId' => $_GET['id']
                 ));
 
@@ -73,6 +74,14 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
 						echo '</select>';
                         echo '<label>Warehouse :</label><select name="warehouse" class="form-control">';
                             echo '<option value=' . $warehouseData["address"]. '>' . $warehouseData["address"] . '</option>';
+                        echo '</select>';
+                        echo '<label>Type of food :</label><select name="typeOfFood" class="form-control">';
+                            echo '<option value="1" ';
+                            if($productData['dish'] == true) { echo 'selected'; }
+                            echo '>Dish</option>';
+                            echo '<option value="0" ';
+                            if($productData['dish'] == false) { echo 'selected'; }
+                            echo '>Ingredient</option>';
                         echo '</select>';
 						echo '<button type="submit" name="validate" class="btn btn-default btn-sm">Validate</button>';
 					echo '</form>';

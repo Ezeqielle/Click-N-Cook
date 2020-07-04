@@ -21,37 +21,30 @@ $db = connectDB();
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="../js/searchShopAdmin.js" type="text/javascript"></script>
 	</head>
-	<body>
-		<div class="container">
-			<header>
-				<nav class="navbar navbar-inverse navbar-fixed-top">
-			      	<div class="container">
-				        <div class="navbar-header">
-							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-							<a class="nav clickNCook navbar-brand" href="" title="Go back home">Click'N Cook</a>
-				        </div>
-				        <div id="navbar" class="collapse navbar-collapse">
-				          <ul class="nav navbar-nav">
-								<li>
-                                    <a  href=" <?php $_SESSION['administrator'] == true ? '../admin/shopAdmin.php' : '../extensions/shop.php' ?>">;
-									class="glyphicon glyphicon-shopping-cart" 
-									title="Shop"
-									>
-									</a> 
-								</li>
-							</ul>
-					        <ul class="nav navbar-nav navbar-right">
-								<li> <a href="" class="glyphicon glyphicon-off"></a> </li>
-							</ul>
-							<ul class="nav navbar-nav navbar-right">
-                                <li> <a href="#" class="glyphicon glyphicon-globe" title="Change language"> <?php $_SESSION['lang'] == 'FR' ? 'EN' : 'FR'; ?></a> </li>
-					        </ul>
-				        </div>
-			     	</div>
-			    </nav>
-			</header>
+    <body>
+    <div class="container">
+        <header>
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="nav clickNCook navbar-brand" href="" title="Go back home">Click'N Cook</a>
+                    </div>
+                    <div id="navbar" class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a  href=" <?php $_SESSION['administrator'] == true ? '../admin/shopAdmin.php' : '../extensions/shop.php' ?>" class="glyphicon glyphicon-shopping-cart" title="Shop"></a>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li> <a href="../extensions/disconnect.php" class="glyphicon glyphicon-off"></a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>

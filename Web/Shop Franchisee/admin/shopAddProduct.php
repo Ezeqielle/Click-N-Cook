@@ -21,12 +21,14 @@ if(isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administrat
 
 						if($_POST['quantity'] > 0){
 
+						        $_POST['typeOfFood'] = $_POST['typeOfFood'] == 1 ? 1 : 0;
 								$_POST['product_status'] = $_POST['product_status'] == 1 ? 1 : 0;
-								$reqProduct = $db->prepare('INSERT INTO ITEM(name, price, product_status) VALUES(:name , :price , :product_status)');
+								$reqProduct = $db->prepare('INSERT INTO ITEM(name, price, product_status, dish) VALUES(:name , :price , :product_status, :dish)');
 								$reqProduct->execute(array(
 									'name' => htmlspecialchars($_POST['name']),
 									'price' => htmlspecialchars($_POST['price']),
-									'product_status' => htmlspecialchars($_POST['product_status'])
+									'product_status' => htmlspecialchars($_POST['product_status']),
+									'dish' => htmlspecialchars($_POST['typeOfFood'])
 								));
 
                                 $reqIdItem = $db->prepare('SELECT * FROM ITEM WHERE ITEM.name = :name');
@@ -88,6 +90,11 @@ if(isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administrat
                             echo '<option value=' . $warehouseData["address"]. '>' . $warehouseData["address"] . '</option>';
                         }
                         $reqWarehouse->closeCursor();
+                    echo '</select>';
+                    echo '<label>Type of food :</label><select name="typeOfFood" class="form-control">';
+                    echo '<option value="">Type of food :</option>';
+                        echo '<option value="1">Dish</option>';
+                        echo '<option value="2">Ingredient</option>';
                     echo '</select>';
 					echo '<button type="submit" name="add" class="btn btn-default btn-sm">Create</button>';
 				echo '</form>';

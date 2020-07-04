@@ -39,7 +39,7 @@ $db = connectDB();
                                 </li>
 							</ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li> <a href="" class="glyphicon glyphicon-off"></a> </li>
+                                <li> <a href="../extensions/disconnect.php" class="glyphicon glyphicon-off"></a> </li>
                             </ul>
 				        </div>
 			     	</div>

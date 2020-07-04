@@ -10,7 +10,7 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
             'id' => $_POST['productId']
         ));
 
-		$reqProduct = $db->prepare('DELETE FROM item WHERE id = :id');
+		$reqProduct = $db->prepare('DELETE FROM ITEM WHERE id = :id');
 		$reqProduct->execute(array(
 			'id' => $_POST['productId']
 		));
