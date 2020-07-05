@@ -1,0 +1,2 @@
+pour qu'un franchisé voie sont compte c est dans src/views/BO/view_specFranchisee.php avec sont id dans la session ou en GET
+et pour les admin aille sur les list de camion et de franchisé c est dans src/views/BO/view_allTruck.php

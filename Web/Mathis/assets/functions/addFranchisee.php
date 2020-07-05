@@ -24,7 +24,7 @@ if (count($_POST) == 6
 
     if (strlen($firstName) < 2 || strlen($firstName) > 50){
         $error = true;
-        $listOfErrors[] = "Le prenom doit faire entre 2 et 50 caracteres";
+        $listOfErrors[] = "The first name must be between 2 and 50 characters long !";
     }
 
     if (strlen($pwd) < 8
@@ -33,17 +33,17 @@ if (count($_POST) == 6
         || !preg_match("#[0-9]#", $pwd)
         || !preg_match("#[A-Z]#", $pwd)){
         $error = true;
-        $listOfErrors[] = "Le mot de passe doit faire entre 8 et 25 caracteres avec des majuscules, des minuscules et des chiffres";
+        $listOfErrors[] = "The password must be between 8 and 25 characters with upper and lower case letters and numbers !";
     }
 
     if ($pwd != $pwdConfirm){
         $error = true;
-        $listOfErrors[] = "Le mot de passe de confirmation ne correspond pas";
+        $listOfErrors[] = "Confirmation password does not match !";
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
         $error = true;
-        $listOfErrors[] = "L'email n'est pas valide";
+        $listOfErrors[] = "The email is not valid !";
     }elseif (!$error){
         $pdo = connectDB();
         $query = "SELECT id FROM franchisee WHERE email = :email";
@@ -52,7 +52,7 @@ if (count($_POST) == 6
         $result = $queryPrepared->fetch();
         if (!empty($result)){
             $error = true;
-            $listOfErrors[] = "L'email existe deja";
+            $listOfErrors[] = "Email already exists !";
         }
     }
 
@@ -66,24 +66,20 @@ if (count($_POST) == 6
         header("Location: ../../src/views/BO/franchisee_folder/view_register.php");
 
     }else{
-        $query = "INSERT INTO franchisee
-        (lastName, firstName, email, password)
-        VALUES
-        (:lastName, :firstName, :email, :password)
+        $query = "UPDATE franchisee SET
+        password = :password
         WHERE
-        driverSLicenceRefenrence = :driverLicence";
+        driversLicenceRefenrence = :driverLicence";
 
         $pwd = password_hash($pwd, PASSWORD_DEFAULT);
 
         $queryPrepared = $pdo->prepare($query);
-        $queryPrepared->bindParam(':fistName',$firstName);
-        $queryPrepared->bindParam(':lastName',$lastName);
-        $queryPrepared->bindParam(':email',$email);
+        $queryPrepared->bindParam(':driverLicence',$driver);
         $queryPrepared->bindParam(':password',$pwd);
         $queryPrepared->execute();
     }
 
-    header('Location: ../../src/views/BO/franchisee_folder/view_register.php');
+header('Location: MET LE MAIL');
 
 
 }else{
