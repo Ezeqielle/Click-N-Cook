@@ -1,0 +1,5 @@
+ajoute un truck
+ajouter les excident
+automatiser entrancefee
+franchise ajoute description a sa franchise
+coter admin et franchise ajoute une case pour ajoute sa la cle de payement
