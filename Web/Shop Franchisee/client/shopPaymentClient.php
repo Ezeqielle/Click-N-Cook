@@ -32,7 +32,7 @@ if(isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administrat
                             while($orderDishData = $reqOrderDish->fetch()) {
                                 echo '<tr>';
                                 echo '<td>' . $orderDishData['name'] . '</td>';
-                                echo '<td>'	. number_format($orderDishData['price'] + (($orderDishData['price'] * 10) / 100), 2) . '€</td>';
+                                echo '<td>' . number_format($orderDishData['price'] + (($orderDishData['price'] * 10) / 100), 2) . '€</td>';
                                 echo '<td>' . $orderDishData['quantity'] . '</td>';
                                 echo '<td>' . number_format($orderDishData['quantity'] * ($orderDishData['price'] + (($orderDishData['price'] * 10) / 100)), 2) . '€</td>';
                                 $totalPrice += $orderDishData['quantity'] * ($orderDishData['price'] + (($orderDishData['price'] * 10) / 100));

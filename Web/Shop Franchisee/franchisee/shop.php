@@ -4,7 +4,6 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
 
     require('../extensions/header.php');
     ?>
-    <script type="text/javascript" src="../js/shop.js"></script>
     <main>
         <div class="row">
             <section class="col-lg-3">
@@ -23,6 +22,10 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
                             echo '<a href="shopPayment.php" class="btn btn-default btn-sm">Last Bill</a>';
                         }
                         if(isset($_GET['payment']) AND !empty($_GET['payment']) AND $_GET['payment'] == 'success') {
+
+                            require_once "../sendMail/invoiceFranchiseeBuy.php";
+
+                            invoiceMail();
                             echo '<div class="alert alert-success alert-dismissible">
 								  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
  							      <strong>Success!</strong> Your payment was successfully.
@@ -44,6 +47,11 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
                     $warehouseData = $reqWarehouse->fetch();
 
                     echo '<article name="products" class="col-lg-4 radius">';
+                    if($productData['dish'] == 1) {
+                        echo '<label>Dish :</label></br>';
+                    } else {
+                        echo '<label>Ingredient :</label></br>';
+                    }
                     echo $productData['name'] . '<br>';
                     echo $quantityData['quantity'] . ' left<br>';
                     echo number_format($productData['price'] + (($productData['price'] * 10) / 100), 2) . ' $<br>';

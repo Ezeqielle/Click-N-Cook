@@ -43,8 +43,10 @@ if(isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administrat
 
                             if($verifyQuantity > 0) {
 
-                                $_POST['typeOfFood'] = $_POST['typeOfFood'] == 1 ? 1 : 0;
-                                $_POST['product_status'] = $_POST['product_status'] == 1 ? 1 : 0;
+                                $reqIngredient = $db->query('SELECT * FROM INGREDIENT WHERE idFranchisee = ' . $_SESSION['id']);
+                                $ingredientVerify = $reqIngredient->fetchALL();
+
+
                                 $reqProduct = $db->prepare('INSERT INTO DISH(name, price, quantity, idFranchisee) VALUES(:name , :price , :quantity, :idFranchisee)');
                                 $reqProduct->execute(array(
                                     'name' => htmlspecialchars($_POST['name']),
@@ -60,8 +62,6 @@ if(isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administrat
                                 ));
                                 $dishData = $reqDish->fetch();
 
-                                $reqIngredient = $db->query('SELECT * FROM INGREDIENT WHERE idFranchisee = ' . $_SESSION['id']);
-                                $ingredientVerify = $reqIngredient->fetchALL();
 
                                 if($ingredientVerify != NULL) {
                                     foreach($ingredientVerify as $ingredientData) {

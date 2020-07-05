@@ -25,6 +25,9 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
                                 echo '<a href="shopPaymentClient.php" class="btn btn-default btn-sm">Last Bill</a>';
                             }
                             if(isset($_GET['payment']) AND !empty($_GET['payment']) AND $_GET['payment'] == 'success') {
+                                require_once "../sendMail/invoiceClientBuy.php";
+
+                                invoiceClientMail();
                                 echo '<div class="alert alert-success alert-dismissible">
                                       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                       <strong>Success!</strong> Your payment was successfully.
@@ -68,6 +71,7 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
                         $arrayQuantity[] = NULL;
                         $arrayQuantityVerify[] = NULL;
                         foreach($menuVerify as $menuData) {
+                            $arrayMin = 100000000000000;
                             $reqDishContains = $db->query('SELECT * FROM CONTAINSDISHMENU WHERE idMenu = ' . $menuData["id"]);
                             if(($dishContainsVerify = $reqDishContains->fetchALL()) != NULL) {
                                 foreach($dishContainsVerify as $dishContainsData) {
@@ -85,6 +89,11 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
                                                 }
                                                 if($arrayQuantity[$dishContainsData['idDish'] . $menuData['id']] > $dishData['quantity']) {
                                                     $arrayQuantityVerify[$dishContainsData['idDish'] . $menuData['id']]--;
+                                                }
+                                                if($arrayQuantityVerify[$dishContainsData['idDish'] . $menuData['id']] < $arrayMin) {
+                                                    $arrayMin = $arrayQuantityVerify[$dishContainsData['idDish'] . $menuData['id']];
+                                                } else {
+                                                    $arrayQuantityVerify[$dishContainsData['idDish'] . $menuData['id']] = $arrayMin;
                                                 }
                                             }
                                         }
@@ -160,6 +169,7 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
                         echo '<div class="col" id="result">';
                         foreach($dishVerify as $dishData) {
                             if ($dishData['quantity'] > 0) {
+                                $emptyDishBis = 1;
                                 $reqIngredientContains = $db->query('SELECT * FROM CONTAINSINGREDIENTSDISH WHERE idDish = ' . $dishData["id"]);
                                 if (($ingredientContainsVerify = $reqIngredientContains->fetchALL()) != NULL) {
                                     echo '<form method="post" name="dish" class="radius" style="background-color: rgb(241, 171, 64); padding: 20px; margin-top: 10px; margin-bottom: 10px">';
@@ -195,13 +205,14 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
                                     for ($i = 0; $i <= $dishData['quantity']; $i++) {
                                         echo '<option value="' . $i . '">' . $i . '</option>';
                                     }
+                                    echo '</select>';
                                     echo '</form>';
                                 }
                             } else {
                                 $emptyDish = 1;
                             }
                         }
-                        if($emptyDish == 1) {
+                        if($emptyDish == 1 AND !isset($emptyDishBis)) {
                             echo '<center>';
                             echo '<label>The stock is empty</label> <br>';
                             echo '</center>';
@@ -215,10 +226,7 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
                             <strong>There is no product named as follows</strong>
                         </div>
                         <?php
-                    }/***
-                        n'arrive pas a recupere les menus et n'arrive pas a rediriger error 500
-
-                     ***/
+                    }
                     ?>
                 </article>
             </section>
@@ -299,6 +307,7 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
                             },
 
                             success: output => {
+                                console.log(output);
                                 window.location.replace('shopPaymentClient.php');
                             }
                         })

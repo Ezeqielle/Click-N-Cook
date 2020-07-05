@@ -13,85 +13,156 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
 
                         if($_POST['quantity'] > 0){
 
-                            $_POST['typeOfFood'] = $_POST['typeOfFood'] == 1 ? 1 : 0;
-                            $_POST['product_status'] = $_POST['product_status'] == 1 ? 1 : 0;
-                            $reqProduct = $db->prepare('UPDATE DISH SET name = :name , price = :price , quantity = :quantity WHERE id = :id');
-                            $reqProduct->execute(array(
-                                'name' => htmlspecialchars($_POST['name']),
-                                'price' => htmlspecialchars($_POST['price']),
-                                'quantity' => htmlspecialchars($_POST['quantity']),
-                                'id' => $_GET['id']
-                            ));
-
                             $reqDish = $db->prepare('SELECT * FROM DISH WHERE idFranchisee = :id AND name = :name');
                             $reqDish->execute(array(
                                 'id' => $_SESSION['id'],
                                 'name' => htmlspecialchars($_POST['name'])
                             ));
                             $dishData = $reqDish->fetch();
+                            if($dishData['type'] != NULL) {
+                                $_POST['quantity'] = $dishData['quantity'];
+                            }
 
                             $reqIngredient = $db->query('SELECT * FROM INGREDIENT WHERE idFranchisee = ' . $_SESSION['id']);
                             $ingredientVerify = $reqIngredient->fetchALL();
-
                             if($ingredientVerify != NULL) {
                                 foreach($ingredientVerify as $ingredientData) {
-                                    if(isset($_POST['ingredientBis' . $ingredientData['id']]) AND !empty($_POST['ingredientBis' . $ingredientData['id']])) {
-                                        foreach($_POST['ingredientBis' . $ingredientData['id']] as $ingredientBis){
-                                            if(htmlspecialchars($ingredientBis) > 0) {
-                                                $reqIngredient = $db->prepare('INSERT INTO CONTAINSINGREDIENTSDISH(idIngredient, idDish, quantity) VALUES(:idIngredient , :idDish , :quantity)');
-                                                $reqIngredient->execute(array(
-                                                    'idIngredient' => $ingredientData['id'],
-                                                    'idDish' => $dishData['id'],
-                                                    'quantity' => htmlspecialchars($ingredientBis)
-                                                ));
-
-                                                $reqIngredientUpdate = $db->prepare('UPDATE INGREDIENT SET quantity = :quantity WHERE id = :id');
-                                                $reqIngredientUpdate->execute(array(
-                                                    'quantity' => $ingredientData['quantity'] - (htmlspecialchars($ingredientBis) * htmlspecialchars($_POST['quantity'])),
-                                                    'id' => $ingredientData['id']
-                                                ));
-                                            }
-                                        }
-                                    }
-                                    if(isset($_POST['ingredient' . $ingredientData['id']]) AND !empty($_POST['ingredient' . $ingredientData['id']])) {
-                                        foreach($_POST['ingredient' . $ingredientData['id']] as $ingredient){
-                                            if(htmlspecialchars($ingredient) > 0) {
-                                                $reqIngredientBis = $db->prepare('UPDATE CONTAINSINGREDIENTSDISH SET quantity = :quantity WHERE idIngredient = :idIngredient AND idDish = :idDish');
-                                                $reqIngredientBis->execute(array(
-                                                    'quantity' => htmlspecialchars($ingredient),
-                                                    'idIngredient' => $ingredientData['id'],
-                                                    'idDish' => $dishData['id']
-                                                ));
-                                            } else {
-
-                                                $reqContainsIngredientsDish = $db->prepare('SELECT * FROM CONTAINSINGREDIENTSDISH WHERE idIngredient = :idIngredient AND idDish = :idDish');
-                                                $reqContainsIngredientsDish->execute(array(
-                                                    'idIngredient' => $ingredientData['id'],
-                                                    'idDish' => $dishData['id']
-                                                ));
-                                                $containsIngredientsDishData = $reqContainsIngredientsDish->fetch();
-
-                                                $reqIngredientUpdate = $db->prepare('UPDATE INGREDIENT SET quantity = :quantity WHERE id = :id');
-                                                $reqIngredientUpdate->execute(array(
-                                                    'quantity' => $ingredientData['quantity'] + ($containsIngredientsDishData['quantity'] * htmlspecialchars($_POST['quantity'])),
-                                                    'id' => $ingredientData['id']
-                                                ));
-
-                                                $reqIngredient = $db->prepare('DELETE FROM CONTAINSINGREDIENTSDISH WHERE idIngredient = :idIngredient AND idDish = :idDish');
-                                                $reqIngredient->execute(array(
-                                                    'idIngredient' => $ingredientData['id'],
-                                                    'idDish' => $dishData['id']
-                                                ));
-                                            }
+                                    foreach($_POST['ingredient' . $ingredientData['id']] as $ingredient){
+                                        $reqContainsIngredientsDishVerify = $db->prepare('SELECT * FROM CONTAINSINGREDIENTSDISH WHERE idIngredient = :idIngredient AND idDish = :idDish');
+                                        $reqContainsIngredientsDishVerify->execute(array(
+                                            'idIngredient' => $ingredientData['id'],
+                                            'idDish' => $dishData['id']
+                                        ));
+                                        $containsIngredientsDishVerifyData = $reqContainsIngredientsDishVerify->fetch();
+                                        if(($dishData['quantity'] != htmlspecialchars($_POST['quantity'])) AND ($containsIngredientsDishVerifyData['quantity'] != $ingredient['quantity'])) {
+                                            $error = 'You cannot change both quantities at the same time !';
                                         }
                                     }
                                 }
-                                $reqIngredient->closeCursor();
                             }
+                            if(!isset($error)) {
 
 
-                            header('Location: shopGestion.php');
-                            exit;
+                                $_POST['typeOfFood'] = $_POST['typeOfFood'] == 1 ? 1 : 0;
+                                $_POST['product_status'] = $_POST['product_status'] == 1 ? 1 : 0;
+                                $reqProduct = $db->prepare('UPDATE DISH SET name = :name , price = :price , quantity = :quantity WHERE id = :id');
+                                $reqProduct->execute(array(
+                                    'name' => htmlspecialchars($_POST['name']),
+                                    'price' => htmlspecialchars($_POST['price']),
+                                    'quantity' => htmlspecialchars($_POST['quantity']),
+                                    'id' => $_GET['id']
+                                ));
+
+                                $reqIngredient = $db->query('SELECT * FROM INGREDIENT WHERE idFranchisee = ' . $_SESSION['id']);
+                                $ingredientVerify = $reqIngredient->fetchALL();
+
+                                if ($ingredientVerify != NULL) {
+                                    foreach ($ingredientVerify as $ingredientData) {
+                                        if (isset($_POST['ingredientBis' . $ingredientData['id']]) and !empty($_POST['ingredientBis' . $ingredientData['id']])) {
+                                            foreach ($_POST['ingredientBis' . $ingredientData['id']] as $ingredientBis) {
+                                                if (htmlspecialchars($ingredientBis) > 0) {
+                                                    if ((htmlspecialchars($ingredientBis) * htmlspecialchars($_POST['quantity'])) <= $ingredientData['quantity']) {
+                                                        $reqIngredient = $db->prepare('INSERT INTO CONTAINSINGREDIENTSDISH(idIngredient, idDish, quantity) VALUES(:idIngredient , :idDish , :quantity)');
+                                                        $reqIngredient->execute(array(
+                                                            'idIngredient' => $ingredientData['id'],
+                                                            'idDish' => $dishData['id'],
+                                                            'quantity' => htmlspecialchars($ingredientBis)
+                                                        ));
+
+                                                        $reqIngredientUpdate = $db->prepare('UPDATE INGREDIENT SET quantity = :quantity WHERE id = :id');
+                                                        $reqIngredientUpdate->execute(array(
+                                                            'quantity' => $ingredientData['quantity'] - (htmlspecialchars($ingredientBis) * htmlspecialchars($_POST['quantity'])),
+                                                            'id' => $ingredientData['id']
+                                                        ));
+                                                    } else {
+                                                        $error = 'The stock of ingredients is not big enough !';
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        if (isset($_POST['ingredient' . $ingredientData['id']]) and !empty($_POST['ingredient' . $ingredientData['id']])) {
+                                            foreach ($_POST['ingredient' . $ingredientData['id']] as $ingredient) {
+                                                if (htmlspecialchars($ingredient) > 0) {
+                                                    if ((htmlspecialchars($ingredient) * htmlspecialchars($_POST['quantity'])) <= $ingredientData['quantity']) {
+                                                        $reqContainsIngredientsDishVerify = $db->prepare('SELECT * FROM CONTAINSINGREDIENTSDISH WHERE idIngredient = :idIngredient AND idDish = :idDish');
+                                                        $reqContainsIngredientsDishVerify->execute(array(
+                                                            'idIngredient' => $ingredientData['id'],
+                                                            'idDish' => $dishData['id']
+                                                        ));
+                                                        $containsIngredientsDishVerifyData = $reqContainsIngredientsDishVerify->fetch();
+
+                                                        $reqIngredientBis = $db->prepare('UPDATE CONTAINSINGREDIENTSDISH SET quantity = :quantity WHERE idIngredient = :idIngredient AND idDish = :idDish');
+                                                        $reqIngredientBis->execute(array(
+                                                            'quantity' => htmlspecialchars($ingredient),
+                                                            'idIngredient' => $ingredientData['id'],
+                                                            'idDish' => $dishData['id']
+                                                        ));
+                                                        if (htmlspecialchars($ingredient) < $containsIngredientsDishVerifyData['quantity']) {
+                                                            $ingredientTmp = $containsIngredientsDishVerifyData['quantity'] - htmlspecialchars($ingredient);
+                                                            $reqIngredientUpdate = $db->prepare('UPDATE INGREDIENT SET quantity = :quantity WHERE id = :id');
+                                                            $reqIngredientUpdate->execute(array(
+                                                                'quantity' => $ingredientData['quantity'] + ($ingredientTmp * htmlspecialchars($_POST['quantity'])),
+                                                                'id' => $ingredientData['id']
+                                                            ));
+                                                        } else if (htmlspecialchars($ingredient) > $containsIngredientsDishVerifyData['quantity']) {
+                                                            $ingredientTmp = htmlspecialchars($ingredient) - $containsIngredientsDishVerifyData['quantity'];
+                                                            $reqIngredientUpdate = $db->prepare('UPDATE INGREDIENT SET quantity = :quantity WHERE id = :id');
+                                                            $reqIngredientUpdate->execute(array(
+                                                                'quantity' => $ingredientData['quantity'] - ($ingredientTmp * htmlspecialchars($_POST['quantity'])),
+                                                                'id' => $ingredientData['id']
+                                                            ));
+                                                        }
+
+                                                        if (htmlspecialchars($_POST['quantity']) < $dishData['quantity']) {
+                                                            $quantityTmp = $dishData['quantity'] - htmlspecialchars($_POST['quantity']);
+                                                            $reqIngredientUpdate = $db->prepare('UPDATE INGREDIENT SET quantity = :quantity WHERE id = :id');
+                                                            $reqIngredientUpdate->execute(array(
+                                                                'quantity' => $ingredientData['quantity'] + (htmlspecialchars($ingredient) * $quantityTmp),
+                                                                'id' => $ingredientData['id']
+                                                            ));
+                                                        } else if (htmlspecialchars($_POST['quantity']) > $dishData['quantity']) {
+                                                            $quantityTmp = htmlspecialchars($_POST['quantity']) - $dishData['quantity'];
+                                                            $reqIngredientUpdate = $db->prepare('UPDATE INGREDIENT SET quantity = :quantity WHERE id = :id');
+                                                            $reqIngredientUpdate->execute(array(
+                                                                'quantity' => $ingredientData['quantity'] - (htmlspecialchars($ingredient) * $quantityTmp),
+                                                                'id' => $ingredientData['id']
+                                                            ));
+                                                        }
+                                                    } else {
+                                                        $error = 'The stock of ingredients is not big enough !';
+                                                    }
+                                                } else {
+
+                                                    $reqContainsIngredientsDish = $db->prepare('SELECT * FROM CONTAINSINGREDIENTSDISH WHERE idIngredient = :idIngredient AND idDish = :idDish');
+                                                    $reqContainsIngredientsDish->execute(array(
+                                                        'idIngredient' => $ingredientData['id'],
+                                                        'idDish' => $dishData['id']
+                                                    ));
+                                                    $containsIngredientsDishData = $reqContainsIngredientsDish->fetch();
+
+                                                    $reqIngredientUpdate = $db->prepare('UPDATE INGREDIENT SET quantity = :quantity WHERE id = :id');
+                                                    $reqIngredientUpdate->execute(array(
+                                                        'quantity' => $ingredientData['quantity'] + ($containsIngredientsDishData['quantity'] * htmlspecialchars($_POST['quantity'])),
+                                                        'id' => $ingredientData['id']
+                                                    ));
+
+                                                    $reqIngredient = $db->prepare('DELETE FROM CONTAINSINGREDIENTSDISH WHERE idIngredient = :idIngredient AND idDish = :idDish');
+                                                    $reqIngredient->execute(array(
+                                                        'idIngredient' => $ingredientData['id'],
+                                                        'idDish' => $dishData['id']
+                                                    ));
+                                                }
+                                            }
+                                        }
+                                    }
+                                    $reqIngredient->closeCursor();
+                                }
+
+                                if (!isset($error)) {
+                                    header('Location: shopGestion.php');
+                                    exit;
+                                }
+                            }
                         } else {
                             $error = 'Stock must be over 0 !';
                         }
@@ -123,7 +194,11 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
                     echo '<form method="post">';
                     echo '<label>Name :</label><input name="name" value="' . $dishData['name'] . '" class="form-control">';
                     echo '<label>Price :</label><input name="price" value="' . $dishData['price'] . '" class="form-control">';
-                    echo '<label>Quantity :</label><input name="quantity" value="' . $dishData['quantity'] . '" class="form-control">';
+                    if($dishData['type'] != NULL) {
+                        echo '<label>Quantity : </label><input type="hidden" name="quantity" value="' . $dishData['quantity'] . '"> ' . $dishData['quantity'] . '</br>';
+                    } else {
+                        echo '<label>Quantity :</label><input name="quantity" value="' . $dishData['quantity'] . '" class="form-control">';
+                    }
 
                     $reqIngredientContains = $db->query('SELECT * FROM CONTAINSINGREDIENTSDISH WHERE idDish = ' . $dishData["id"]);
                     if(($ingredientContainsVerify = $reqIngredientContains->fetchALL()) != NULL) {

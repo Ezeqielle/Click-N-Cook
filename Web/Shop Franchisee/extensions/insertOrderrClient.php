@@ -203,12 +203,29 @@ if(isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administrat
                     //on vérifie que l'utilisateur n'a pas modifier le code HTML avec une quantité inexistante.
                     if($dishArray[$i + 1] > 0 AND $dishArray[$i + 1] <= $productId['quantity']) {
 
-                        $addDishClient = $db->prepare('INSERT INTO DISHCLIENT (name, price, idClient) VALUES(:name, :price, :idClient)');
-                        $addDishClient->execute(array(
-                            'name' => $productId['name'],
-                            'price' => $productId['price'],
-                            'idClient' => $_SESSION['id']
+                        $reqAdvantageVerify = $db->prepare('SELECT * FROM ADVANTAGE WHERE idClient = :idClient AND idFranchisee = :idFranchisee');
+                        $reqAdvantageVerify->execute(array(
+                            'idClient' => $_SESSION['id'],
+                            'idFranchisee' => $_SESSION['idFranchisee']
                         ));
+                        $advantageData = $reqAdvantageVerify->fetch();
+
+                        if($reqAdvantageVerify->rowCount() > 0) {
+                            $price = $productId['price'] - (($productId['price'] * $advantageData['advantage']) / 100);
+                            $addDishClient = $db->prepare('INSERT INTO DISHCLIENT (name, price, idClient) VALUES(:name, :price, :idClient)');
+                            $addDishClient->execute(array(
+                                'name' => $productId['name'],
+                                'price' => number_format($price, 2),
+                                'idClient' => $_SESSION['id']
+                            ));
+                        } else {
+                            $addDishClient = $db->prepare('INSERT INTO DISHCLIENT (name, price, idClient) VALUES(:name, :price, :idClient)');
+                            $addDishClient->execute(array(
+                                'name' => $productId['name'],
+                                'price' => $productId['price'],
+                                'idClient' => $_SESSION['id']
+                            ));
+                        }
 
                         $reqDishClient = $db->prepare('SELECT * FROM DISHCLIENT WHERE name = :name AND idClient = :idClient AND verify is NULL');
                         $reqDishClient->execute(array(
@@ -281,12 +298,29 @@ if(isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administrat
 
                     //on vérifie que l'utilisateur n'a pas modifier le code HTML avec une quantité inexistante.
                     if ($menuArray[$i + 1] > 0 and $menuArray[$i + 1] <= $menuArray[$i + 2]) {
-                        $addMenuClient = $db->prepare('INSERT INTO MENUCLIENT (name, price, idClient) VALUES(:name, :price, :idClient)');
-                        $addMenuClient->execute(array(
-                            'name' => $productMenuId['name'],
-                            'price' => $productMenuId['price'],
-                            'idClient' => $_SESSION['id']
+                        $reqAdvantageVerify = $db->prepare('SELECT * FROM ADVANTAGE WHERE idClient = :idClient AND idFranchisee = :idFranchisee');
+                        $reqAdvantageVerify->execute(array(
+                            'idClient' => $_SESSION['id'],
+                            'idFranchisee' => $_SESSION['idFranchisee']
                         ));
+                        $advantageData = $reqAdvantageVerify->fetch();
+
+                        if($reqAdvantageVerify->rowCount() > 0) {
+                            $price = $productMenuId['price']  - (($productMenuId['price'] * $advantageData['advantage']) / 100);
+                            $addMenuClient = $db->prepare('INSERT INTO MENUCLIENT (name, price, idClient) VALUES(:name, :price, :idClient)');
+                            $addMenuClient->execute(array(
+                                'name' => $productMenuId['name'],
+                                'price' => number_format($price, 2),
+                                'idClient' => $_SESSION['id']
+                            ));
+                        } else {
+                            $addMenuClient = $db->prepare('INSERT INTO MENUCLIENT (name, price, idClient) VALUES(:name, :price, :idClient)');
+                            $addMenuClient->execute(array(
+                                'name' => $productMenuId['name'],
+                                'price' => $productMenuId['price'],
+                                'idClient' => $_SESSION['id']
+                            ));
+                        }
 
                         $reqMenuClient = $db->prepare('SELECT * FROM MENUCLIENT WHERE name = :name AND idClient = :idClient AND verify is NULL');
                         $reqMenuClient->execute(array(
@@ -301,6 +335,7 @@ if(isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administrat
                         ));
 
                         while($containsDishMenuData = $reqContainsDishMenu->fetch()) {
+                            echo 'test1</br>';
                             $reqDishMenuClient = $db->prepare('SELECT * FROM DISH WHERE id = :idDish AND idFranchisee = :idFranchisee');
                             $reqDishMenuClient->execute(array(
                                 'idDish' => $containsDishMenuData['idDish'],
@@ -308,12 +343,30 @@ if(isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administrat
                             ));
                             $dishMenuClientData = $reqDishMenuClient->fetch();
 
-                            $addDishClient = $db->prepare('INSERT INTO DISHCLIENT (name, price, idClient) VALUES(:name, :price, :idClient)');
-                            $addDishClient->execute(array(
-                                'name' => $dishMenuClientData['name'],
-                                'price' => $dishMenuClientData['price'],
-                                'idClient' => $_SESSION['id']
+
+                            $reqAdvantageVerify = $db->prepare('SELECT * FROM ADVANTAGE WHERE idClient = :idClient AND idFranchisee = :idFranchisee');
+                            $reqAdvantageVerify->execute(array(
+                                'idClient' => $_SESSION['id'],
+                                'idFranchisee' => $_SESSION['idFranchisee']
                             ));
+                            $advantageData = $reqAdvantageVerify->fetch();
+
+                            if($reqAdvantageVerify->rowCount() > 0) {
+                                $price = $dishMenuClientData['price'] - (($dishMenuClientData['price'] * $advantageData['advantage']) / 100);
+                                $addDishClient = $db->prepare('INSERT INTO DISHCLIENT (name, price, idClient) VALUES(:name, :price, :idClient)');
+                                $addDishClient->execute(array(
+                                    'name' => $dishMenuClientData['name'],
+                                    'price' => number_format($price, 2),
+                                    'idClient' => $_SESSION['id']
+                                ));
+                            } else {
+                                $addDishClient = $db->prepare('INSERT INTO DISHCLIENT (name, price, idClient) VALUES(:name, :price, :idClient)');
+                                $addDishClient->execute(array(
+                                    'name' => $dishMenuClientData['name'],
+                                    'price' => $dishMenuClientData['price'],
+                                    'idClient' => $_SESSION['id']
+                                ));
+                            }
                             /** pas de distinction entre dish ajout dish et dish ajout menu */
                             $idDishClient = $db->lastInsertId();
 
@@ -325,66 +378,75 @@ if(isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administrat
                             ));
                             $dishClientData = $reqDishClient->fetch();
 
+                            echo 'test2</br>';
                             $reqContainsIngredientDish = $db->prepare('SELECT * FROM CONTAINSINGREDIENTSDISH WHERE idDish = :idDish');
                             $reqContainsIngredientDish->execute(array(
                                 'idDish' => $dishMenuClientData['id']
                             ));
+                            if(($containsIngredientDishDatas = $reqContainsIngredientDish->fetchALL()) != NULL) {
+                                foreach ($containsIngredientDishDatas as $containsIngredientDishData) {
+                                    $reqIngredient = $db->prepare('SELECT * FROM INGREDIENT WHERE id = :idIngredient');
+                                    $reqIngredient->execute(array(
+                                        'idIngredient' => $containsIngredientDishData['idIngredient']
+                                    ));
+                                    $ingredientData = $reqIngredient->fetch();
 
-                            while($containsIngredientDishData = $reqContainsIngredientDish->fetch()) {
-                                $reqIngredient = $db->prepare('SELECT * FROM INGREDIENT WHERE id = :idIngredient');
-                                $reqIngredient->execute(array(
-                                    'idIngredient' => $containsIngredientDishData['idIngredient']
-                                ));
-                                $ingredientData = $reqIngredient->fetch();
+                                    $addIngredientClient = $db->prepare('INSERT INTO INGREDIENTCLIENT (name, idClient) VALUES(:name, :idClient)');
+                                    $addIngredientClient->execute(array(
+                                        'name' => $ingredientData['name'],
+                                        'idClient' => $_SESSION['id']
+                                    ));
 
-                                $addIngredientClient = $db->prepare('INSERT INTO INGREDIENTCLIENT (name, idClient) VALUES(:name, :idClient)');
-                                $addIngredientClient->execute(array(
-                                    'name' => $ingredientData['name'],
-                                    'idClient' => $_SESSION['id']
-                                ));
+                                    $idIngredientClient = $db->lastInsertId();
 
-                                $idIngredientClient = $db->lastInsertId();
-
-                                $reqIngredientClient = $db->prepare('SELECT * FROM INGREDIENTCLIENT WHERE id = :id AND name = :name AND idClient = :idClient AND verify is NULL');
-                                $reqIngredientClient->execute(array(
-                                    'id' => $idIngredientClient,
-                                    'name' => $ingredientData['name'],
-                                    'idClient' => $_SESSION['id']
-                                ));
-                                $ingredientClientData = $reqIngredientClient->fetch();
-
-
-                                $addIngredientClient = $db->prepare('INSERT INTO CONTAINSINGREDIENTSDISHCLIENT (idIngredientClient, idDishClient, quantity) VALUES(:idIngredientClient, :idDishClient, :quantity)');
-                                $addIngredientClient->execute(array(
-                                    'idIngredientClient' => $ingredientClientData['id'],
-                                    'idDishClient' => $dishClientData['id'],
-                                    'quantity' => $containsIngredientDishData['quantity']
-                                ));
+                                    $reqIngredientClient = $db->prepare('SELECT * FROM INGREDIENTCLIENT WHERE id = :id AND name = :name AND idClient = :idClient AND verify is NULL');
+                                    $reqIngredientClient->execute(array(
+                                        'id' => $idIngredientClient,
+                                        'name' => $ingredientData['name'],
+                                        'idClient' => $_SESSION['id']
+                                    ));
+                                    $ingredientClientData = $reqIngredientClient->fetch();
 
 
+                                    $addIngredientClient = $db->prepare('INSERT INTO CONTAINSINGREDIENTSDISHCLIENT (idIngredientClient, idDishClient, quantity) VALUES(:idIngredientClient, :idDishClient, :quantity)');
+                                    $addIngredientClient->execute(array(
+                                        'idIngredientClient' => $ingredientClientData['id'],
+                                        'idDishClient' => $dishClientData['id'],
+                                        'quantity' => $containsIngredientDishData['quantity']
+                                    ));
+
+
+                                }
                             }
+
+                            echo 'test3</br>';
                             $createOrderDish = $db->prepare('INSERT INTO CONTAINSDISHMENUCLIENT (idDishClient, idMenuClient, quantity) VALUES(:idDishClient, :idMenuClient, :quantity)');
                             $createOrderDish->execute(array(
                                 'idDishClient' => $dishClientData['id'],
                                 'idMenuClient' => $menuClientData['id'],
                                 'quantity' => $containsDishMenuData['quantity']
                             ));
-
-                            $createOrderMenu = $db->prepare('INSERT INTO CONTAINSMENUSALECLIENT (idMenuClient, idPurchaseClient, quantity) VALUES(:idMenuClient, :idPurchaseClient, :quantity)');
-                            $createOrderMenu->execute(array(
-                                'idMenuClient' => $menuClientData['id'],
-                                'idPurchaseClient' => $billNumber,
-                                'quantity' => htmlspecialchars($menuArray[$i + 1])
-                            ));
+                            echo 'test4</br>';
+                            echo 'test5</br>';
                         }
 
-
-
+                        $createOrderMenu = $db->prepare('INSERT INTO CONTAINSMENUSALECLIENT (idMenuClient, idPurchaseClient, quantity) VALUES(:idMenuClient, :idPurchaseClient, :quantity)');
+                        $createOrderMenu->execute(array(
+                            'idMenuClient' => $menuClientData['id'],
+                            'idPurchaseClient' => $billNumber,
+                            'quantity' => htmlspecialchars($menuArray[$i + 1])
+                        ));
+                        echo 'test1';
                     }
+                    echo 'test11';
                 }
+                echo 'test111';
             }
+            echo 'test1111';
         }
+        echo 'test11111';
     }
+    echo 'test111111';
 } else {
     echo '<img src="https://http.cat/401" alt="not found">';
     header('Location: ../login/index.php');

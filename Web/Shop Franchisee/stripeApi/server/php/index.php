@@ -57,20 +57,52 @@ function calculateOrderAmount($items) {
         while($orderData = $reqOrder->fetch()) {
 
             if($orderData['dish'] == TRUE) {
-                $insertStockFranchisee = $db->prepare('INSERT INTO DISH (name, price, quantity, idFranchisee) VALUES(:name, :price, :quantity, :idFranchisee)');
-                $insertStockFranchisee->execute(array(
+                $reqDish = $db->prepare('SELECT * FROM DISH WHERE name = :name AND idFranchisee = :id');
+                $reqDish->execute(array(
                     'name' => $orderData['name'],
-                    'price' => number_format(($orderData['price'] + (($orderData['price'] * 20) / 100)), 2),
-                    'quantity' => $orderData['quantity'],
-                    'idFranchisee' => $_SESSION['id']
+                    'id' => $_SESSION['id']
                 ));
+                $dishData = $reqDish->fetch();
+
+                if($reqDish->rowCount() > 0) {
+                    $updateStockFranchisee = $db->prepare('UPDATE DISH SET price = :price, quantity = :quantity WHERE id = :id');
+                    $updateStockFranchisee->execute(array(
+                        'price' => number_format(($orderData['price'] + (($orderData['price'] * 20) / 100)), 2),
+                        'quantity' => $dishData['quantity'] + $orderData['quantity'],
+                        'id' => $dishData['id']
+                    ));
+                } else {
+                    $insertStockFranchisee = $db->prepare('INSERT INTO DISH (name, price, quantity, idFranchisee, type) VALUES(:name, :price, :quantity, :idFranchisee, :type)');
+                    $insertStockFranchisee->execute(array(
+                        'name' => $orderData['name'],
+                        'price' => number_format(($orderData['price'] + (($orderData['price'] * 20) / 100)), 2),
+                        'quantity' => $orderData['quantity'],
+                        'idFranchisee' => $_SESSION['id'],
+                        'type' => 1
+                    ));
+                }
             } else if($orderData['dish'] == FALSE){
-                $insertStockFranchisee = $db->prepare('INSERT INTO INGREDIENT (name, quantity, idFranchisee) VALUES(:name, :quantity, :idFranchisee)');
-                $insertStockFranchisee->execute(array(
+                $reqIngredient = $db->prepare('SELECT * FROM INGREDIENT WHERE name = :name AND idFranchisee = :id');
+                $reqIngredient->execute(array(
                     'name' => $orderData['name'],
-                    'quantity' => $orderData['quantity'],
-                    'idFranchisee' => $_SESSION['id']
+                    'id' => $_SESSION['id']
                 ));
+                $ingredientData = $reqIngredient->fetch();
+
+                if($reqIngredient->rowCount() > 0) {
+                    $updateStockFranchisee = $db->prepare('UPDATE INGREDIENT SET quantity = :quantity WHERE id = :id');
+                    $updateStockFranchisee->execute(array(
+                        'quantity' => $ingredientData['quantity'] + $orderData['quantity'],
+                        'id' => $ingredientData['id']
+                    ));
+                } else {
+                    $insertStockFranchisee = $db->prepare('INSERT INTO INGREDIENT (name, quantity, idFranchisee) VALUES(:name, :quantity, :idFranchisee)');
+                    $insertStockFranchisee->execute(array(
+                        'name' => $orderData['name'],
+                        'quantity' => $orderData['quantity'],
+                        'idFranchisee' => $_SESSION['id']
+                    ));
+                }
             }
 
             $reqQuantityProduct = $db->query('SELECT quantity FROM BELONGIN WHERE idItem = ' .$orderData["id"]);
@@ -85,11 +117,20 @@ function calculateOrderAmount($items) {
             ));
         }
 
+        $reqPurchase = $db->prepare('SELECT * FROM PURCHASE WHERE idFranchisee = :currentId AND date IS NULL');
+        $reqPurchase->execute(array(
+            'currentId' => $_SESSION['id']
+        ));
+        $purchaseData = $reqPurchase->fetch();
+        $_SESSION['idPurchase'] = $purchaseData['bill_number'];
+
         $reqUpdateDatePayment = $db->prepare('UPDATE PURCHASE SET date = NOW(), price = :price WHERE idFranchisee = :currentId AND date IS NULL');
         $reqUpdateDatePayment->execute(array(
             'price' => number_format($totalPriceTva, 2),
             'currentId' => $_SESSION['id']
         ));
+
+        //$_SESSION['stripeKey'] = 'pk_test_51GqKO7I442Tn6Kr1TuMvJCl2iERVkU8IX9NI063wMenUJgybM2PZXmEHWMlPRJcqIJWDLD0R0v7ebY3Lx4sHFEnK00fDeiYR2H';
 
         $totalPrice = $totalPrice * 100;
 
@@ -252,11 +293,27 @@ function calculateOrderAmount($items) {
         }
 
 
-        $reqUpdateDatePayment = $db->prepare('UPDATE PURCHASECLIENT SET date = NOW(), price = :price WHERE idClient = :currentId AND date IS NULL');
-        $reqUpdateDatePayment->execute(array(
-            'price' => number_format($totalPriceTva, 2),
+        $reqPurchaseClient = $db->prepare('SELECT * FROM PURCHASECLIENT WHERE idClient = :currentId AND date IS NULL');
+        $reqPurchaseClient->execute(array(
             'currentId' => $_SESSION['id']
         ));
+        $purchaseClientData = $reqPurchaseClient->fetch();
+        $_SESSION['idPurchaseClient'] = $purchaseClientData['bill_numberClient'];
+
+
+        $reqUpdateDatePayment = $db->prepare('UPDATE PURCHASECLIENT SET date = NOW(), price = :price, idFranchisee = :idFranchisee WHERE idClient = :currentId AND date IS NULL');
+        $reqUpdateDatePayment->execute(array(
+            'price' => number_format($totalPriceTva, 2),
+            'idFranchisee' => $_SESSION['idFranchisee'],
+            'currentId' => $_SESSION['id']
+        ));
+
+        /*$reqStripeKey = $db->prepare('SELECT * FROM FRANCHISEE WHERE id = :idFranchisee');
+        $reqStripeKey->execute(array(
+            'idFranchisee' => $_SESSION['idFranchisee']
+        ));
+        $stripeKeyData = $reqStripeKey->fetch();
+        $_SESSION['stripeKey'] = $stripeKeyData['stripeKey'];*/
 
 
         $totalPrice = $totalPrice * 100;
@@ -294,14 +351,11 @@ function generateResponse($intent/*, $logger*/)
 }
 
 $app->get('/stripe-key', function (Request $request, Response $response, array $args) {
+    //dataType: 'json';
 
-    $reqStripeKey = $db->prepare('SELECT * FROM FRANCHISEE id = :idFranchisee');
-    $reqStripeKey->execute(array(
-        'idFranchisee' => $_SESSION['idFranchisee']
-    ));
-    $stripeKeyData = $reqStripeKey->fetch();
+    //$pubKey = $_SESSION['stripeKey']);
+    $pubKey ='pk_test_51GqKO7I442Tn6Kr1TuMvJCl2iERVkU8IX9NI063wMenUJgybM2PZXmEHWMlPRJcqIJWDLD0R0v7ebY3Lx4sHFEnK00fDeiYR2H';
 
-    $pubKey = $stripeKeyData['stripeKey'];
     return $response->withJson(['publicKey' => $pubKey]);
 });
 

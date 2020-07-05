@@ -46,6 +46,11 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
 
 				echo '<article class="col-lg-4 radius" id="products">';
 					echo '<form method="post">';
+					if($productData['dish'] == 1) {
+					    echo '<label>Dish :</label></br>';
+                    } else {
+                        echo '<label>Ingredient :</label></br>';
+                    }
 						echo $productData['product_status'] == 0 ? '<font color="red"><strong>HIDDEN</strong></font><br>' : '';
                         echo $productData['name'] . '<br>';
                         echo $quantityData['quantity'] . ' left<br>';

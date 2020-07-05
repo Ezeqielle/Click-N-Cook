@@ -26,17 +26,17 @@ if(isset($_POST['signInFranchisee'])) {
                 if($userData['admin'] == true) {
                     $_SESSION['id'] = $userData['id'];
                     $_SESSION['email'] = $userData['email'];
-                    $_SESSION['firstname'] = $userData['first name'];
-                    $_SESSION['name'] = $userData['last name'];
+                    $_SESSION['firstname'] = $userData['firstName'];
+                    $_SESSION['name'] = $userData['lastName'];
                     $_SESSION['administrator'] = $userData['admin'];
                     header('Location: ../admin/shopAdmin.php');
                     exit;
                 } else {
                     $_SESSION['id'] = $userData['id'];
                     $_SESSION['email'] = $userData['email'];
-                    $_SESSION['firstname'] = $userData['first name'];
-                    $_SESSION['name'] = $userData['last name'];
-                    $_SESSION['entranceFee'] = $userData['entrance fee'];
+                    $_SESSION['firstname'] = $userData['firstName'];
+                    $_SESSION['name'] = $userData['lastName'];
+                    $_SESSION['entranceFee'] = $userData['entranceFee'];
                     $_SESSION['administrator'] = $userData['admin'];
                     header('Location: ../franchisee/shop.php');
                     exit;

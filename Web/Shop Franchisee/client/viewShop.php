@@ -10,6 +10,29 @@ if(isset($_POST['choose'])) {
 }
 if (isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
 
+    $reqClient = $db->query('SELECT * FROM CLIENT');
+    while($clientData = $reqClient->fetch()) {
+        $reqFranchisee = $db->query('SELECT * FROM FRANCHISEE');
+        while ($franchiseeData = $reqFranchisee->fetch()) {
+            $reqPurchaseClient = $db->query('SELECT * FROM PURCHASECLIENT WHERE idClient = ' . $clientData['id'] . ' AND idFranchisee = ' . $franchiseeData['id']);
+            if ($reqPurchaseClient->rowCount() > 5) {
+                $reqAdvantage = $db->prepare('SELECT * FROM ADVANTAGE WHERE idFranchisee = :idFranchisee AND idClient = :idClient');
+                $reqAdvantage->execute(array(
+                    'idFranchisee' => $franchiseeData['id'],
+                    'idClient' => $clientData['id']
+                ));
+                if ($reqAdvantage->rowCount() == 0) {
+                    $addAdvantage = $db->prepare('INSERT INTO ADVANTAGE (idFranchisee, idClient, advantage) VALUES(:idFranchisee, :idClient, :advantage)');
+                    $addAdvantage->execute(array(
+                        'idFranchisee' => $franchiseeData['id'],
+                        'idClient' => $clientData['id'],
+                        'advantage' => 15
+                    ));
+                }
+            }
+        }
+    }
+
     require('../extensions/header.php');
     ?>
     <main>
@@ -34,7 +57,6 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
                     echo '<form action="viewShop.php" method="post" class="form-signin">';
                     echo $franchiseeData['nameFranchise'] . '<br>';
                     echo $franchiseeData['description'] . '<br>';
-                    echo 'Ratings : ' . $franchiseeData['note'] . '<br>';
                     echo 'Location : ' . $locationTruckData['location'] . '<br>';
                     echo '<input type="hidden" name="id" value="' . $franchiseeData['id'] . '">';
                     echo '<button type="submit" name="choose" id="btn" class="btn btn-default btn-sm">Choose</button>';
@@ -46,6 +68,8 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id'])) {
                 ?>
             </section>
         </div>
+
+
         <script>
             window.addEventListener("DOMContentLoaded", () => {
                 const btn = document.querySelector('#btn');

@@ -31,8 +31,16 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
             'id' => $_POST['productId']
         ));
 
+
+        $reqContainsSaleMenu = $db->prepare('SELECT * FROM CONTAINSDISHMENU WHERE idDish = :id');
+        $reqContainsSaleMenu->execute(array(
+            'id' => $_POST['productId']
+        ));
+
         if($reqContainsSale->rowCount() > 0) {
             $error = 'This product cannot be deleted it has already been purchased !';
+        } else if($reqContainsSaleMenu->rowCount > 0) {
+            $error = 'This product belongs to a menu !';
         } else {
             $delDish = $db->prepare('DELETE FROM DISH WHERE id = :id');
             $delDish->execute(array(
@@ -93,7 +101,7 @@ if (isset($_SESSION['id']) AND !empty($_SESSION['id']) AND $_SESSION['administra
                 <div class="row">
                     <article class="col-lg-12 radius">
                         <center>
-                            <a role="button" href="adminSalesHistoryFranchisee.php" class="btn btn-default btn-sm">
+                            <a role="button" href="franchiseeSalesHistory.php" class="btn btn-default btn-sm">
                                 Sales history
                             </a>
                             </br>
