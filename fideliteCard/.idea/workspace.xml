@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="dd335386-c79d-4d88-91ba-35ebb030a7bb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../Web/Mathis/src/views/BO/view_allMaintenance.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Web/Mathis/src/views/BO/view_editTruck.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Web/Mathis/src/views/BO/view_specFranchisee.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/src/main/java/Connect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/src/main/java/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/web/web/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web/Mathis/assets/functions/addMaintenance.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/Mathis/assets/functions/addMaintenance.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web/Mathis/assets/functions/display_franchisee.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web/Mathis/assets/functions/display_truck.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/Mathis/assets/functions/editFranchisee.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web/Mathis/bdd/conf.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/Mathis/bdd/conf.inc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web/Mathis/src/views/BO/view_allFranchisee.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/Mathis/src/views/BO/view_allFranchisee.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web/Mathis/src/views/BO/view_allTruck.php~etape1" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/Mathis/assets/functions/editTruck.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web/Mathis/src/views/BO/view_new_maintenance.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/Mathis/src/views/BO/view_newMaintenance.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web/Mathis/src/views/BO/view_specTruck.php~etape1" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/Mathis/src/views/BO/franchisee_folder/view_editFranchisee.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web/Mathis/src/views/bo/view_allTruck.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/Mathis/src/views/bo/view_allTruck.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web/Mathis/src/views/bo/view_specTruck.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/Mathis/src/views/bo/view_specTruck.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Users\mathi\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\202.6109.22\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1eDF7AI5GqE1IXLkHuwBpOqGEab" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Mariadb" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="mariadb.Mariadb" />
+      <module name="fideliteCard" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="mariadb.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Mariadb" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dd335386-c79d-4d88-91ba-35ebb030a7bb" name="Default Changelist" comment="" />
+      <created>1593848087621</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1593848087621</updated>
+      <workItem from="1593848089500" duration="2452000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="440" y="99" key="#Project_Structure" timestamp="1593848140266">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="440" y="99" key="#Project_Structure/0.0.1920.1050@0.0.1920.1050" timestamp="1593848140266" />
+    <state x="776" y="303" key="chooseDestDirectoryDialog" timestamp="1593848235610">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="776" y="303" key="chooseDestDirectoryDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1593848235610" />
+  </component>
+</project>

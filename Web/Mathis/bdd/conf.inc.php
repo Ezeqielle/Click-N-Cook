@@ -2,6 +2,6 @@
 
 define('DBHOST', 'localhost');
 define('DBDRIVER', 'mysql');
-define('DBNAME', 'mydb');
+define('DBNAME', 'clickncook');
 define('DBUSER', 'root');
 define('DBPWD', '');

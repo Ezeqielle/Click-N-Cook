@@ -76,7 +76,7 @@ if(isset($_SESSION["errors"])){
                     <a href="#" class="list-group-item list-group-item-action list-group-item-danger">Identification</a>
                     <?php foreach ($dataTruck as $DASHBOARD_response) : ?>
                         <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Truck id: <?php echo $truck ?></a>
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">Car licence plate : Bo 345 AA</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">Car licence plate : <?php echo $DASHBOARD_response->registration?></a>
                         <a href="#" class="list-group-item list-group-item-action list-group-item-success">Franchisee : <?php echo $DASHBOARD_response->idFranchisee?></a>
                     <?php endforeach; ?>
                 </div><!--End list-group -->

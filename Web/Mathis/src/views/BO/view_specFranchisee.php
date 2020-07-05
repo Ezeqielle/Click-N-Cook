@@ -71,8 +71,8 @@ if(isset($_SESSION["errors"])){
             <div class="p-2 nfo">
                 <div class="list-group">
                     <?php foreach ($dataUser as $DASHBOARD_response) : ?>
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Lastname: <?php echo $DASHBOARD_response->last_name ?></a>
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">Firstname: <?php echo $DASHBOARD_response->first_name ?></a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Lastname: <?php echo $DASHBOARD_response->lastName ?></a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">Firstname: <?php echo $DASHBOARD_response->firstName ?></a>
                         <a href="#" class="list-group-item list-group-item-action list-group-item-success">Mail : <?php echo $DASHBOARD_response->email ?></a>
                     <?php endforeach; ?>
                 </div><!--End list-group -->
@@ -81,8 +81,8 @@ if(isset($_SESSION["errors"])){
             <div class="doc p-2">
                 <div class="list-group">
                     <a href="#" class="list-group-item list-group-item-action list-group-item-danger">telephone: <?php echo $DASHBOARD_response->contact_number ?></a>
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-primary">permit de conduire: <?php echo $DASHBOARD_response->driver_licence_reference ?></a>
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">n° sécurité social: <?php echo $DASHBOARD_response->social_security_number ?></a>
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-primary">permit de conduire: <?php echo $DASHBOARD_response->driversLicenceReference ?></a>
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">n° sécurité social: <?php echo $DASHBOARD_response->socialSecurityNumber ?></a>
                 </div><!--End list-group -->
             </div><!--end doc-->
 

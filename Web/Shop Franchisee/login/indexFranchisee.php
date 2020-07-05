@@ -93,7 +93,7 @@ require('indexHeader.php');
                         <center>
                             <a href="forgotFranchisee.php" class="option">Forgot the password ?</a>
                             or
-                            <a href="registerFranchisee.php" class="option">Create account.</a>
+                            <a href="../src/views/BO/franchisee_folder/view_register.php" class="option">Create account.</a>
                             <?= isset($error) ? '<font color="red">' . $error . "</font><br>" : ''; ?>
                         </center>
                     </div>

@@ -40,7 +40,7 @@ if (count($_POST) == 6
      if ($error){
          $_SESSION["errors"] = $listOfErrors;
          $_SESSION["errorsInput"] = $_POST;
-         header("Location: ../../src/views/BO/view_new_maintenance.php");
+         header("Location: ../../src/views/BO/view_newMaintenance.php");
      }else{
          $pdo = connectDB();
          $query = "INSERT INTO users 

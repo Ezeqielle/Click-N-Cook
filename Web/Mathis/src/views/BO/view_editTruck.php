@@ -69,7 +69,7 @@ if(isset($_SESSION["errors"])){
                                 <input type=hidden" id="truck_id" class="form-control" required="required" autofocus="autofocus" value="<?php echo $dataTruck[0]->id?>">
                             </div>
                             <div class="form-label-group">
-                                <input type="text" id="carRegistration" name="carRegistration" class="form-control" required="required" autofocus="autofocus" value="<?php echo $dataTruck[0]->car_registration ?>">
+                                <input type="text" id="carRegistration" name="carRegistration" class="form-control" required="required" autofocus="autofocus" value="<?php echo $dataTruck[0]->registration ?>">
                                 <label for="carRegistration">Car registration</label>
                             </div>
                         </div>
