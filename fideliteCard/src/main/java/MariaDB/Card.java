@@ -32,12 +32,12 @@ public class Card {
             rsmd = rst.getMetaData();
             System.out.println("\n**********************************");
             for (int i = 1; i <= rsmd.getColumnCount(); i++){
-                System.out.println("\t" + rsmd.getColumnName(i).toUpperCase() + "\t");
+                System.out.println("\t" + rsmd.getColumnName(i).toUpperCase() + "\t *");
             }
             System.out.println("\n**********************************");
             while (rst.next()){
                 for (int i = 1; i <= rsmd.getColumnCount(); i++){
-                    System.out.println("\t" + rst.getObject(i).toString() + "\t %");
+                    System.out.println("\t" + rst.getObject(i).toString() + "\t |");
                 }
                 System.out.println("\n---------------------------------");
             }
