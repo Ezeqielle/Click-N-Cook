@@ -8,7 +8,8 @@
 /.idea
 /.vscode
 /.git
-
+/.rar
+/.7z
 
 # User-specific files
 *.rsuser
