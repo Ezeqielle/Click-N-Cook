@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="fideliteCard:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
@@ -23,22 +28,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd335386-c79d-4d88-91ba-35ebb030a7bb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Web/Mathis/src/views/BO/view_allMaintenance.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Web/Mathis/src/views/BO/view_editTruck.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Web/Mathis/src/views/BO/view_specFranchisee.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java/src/main/java/Connect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java/src/main/java/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../java/web/web/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Web/Mathis/assets/functions/addMaintenance.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/Mathis/assets/functions/addMaintenance.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Web/Mathis/assets/functions/display_franchisee.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Web/Mathis/assets/functions/display_truck.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/Mathis/assets/functions/editFranchisee.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Web/Mathis/bdd/conf.inc.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/Mathis/bdd/conf.inc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Web/Mathis/src/views/BO/view_allFranchisee.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/Mathis/src/views/BO/view_allFranchisee.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Web/Mathis/src/views/BO/view_allTruck.php~etape1" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/Mathis/assets/functions/editTruck.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Web/Mathis/src/views/BO/view_new_maintenance.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/Mathis/src/views/BO/view_newMaintenance.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Web/Mathis/src/views/BO/view_specTruck.php~etape1" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/Mathis/src/views/BO/franchisee_folder/view_editFranchisee.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Web/Mathis/src/views/bo/view_allTruck.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/Mathis/src/views/bo/view_allTruck.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Web/Mathis/src/views/bo/view_specTruck.php" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/Mathis/src/views/bo/view_specTruck.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +48,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="C:\Users\mathi\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\202.6109.22\plugins\maven\lib\maven3" />
+        <option name="mavenHome" value="C:\Users\Ezeqielle\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\202.6250.13\plugins\maven\lib\maven3" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -73,28 +63,40 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/mariadb-java-client-2.6.1.jar" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.smartKeys" />
   </component>
-  <component name="RunManager">
-    <configuration name="Mariadb" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="mariadb.Mariadb" />
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Ezeqielle\Desktop\Click-N-Cook\fideliteCard" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Card (1)">
+    <configuration name="Card (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MariaDB.Card" />
       <module name="fideliteCard" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="mariadb.*" />
+          <option name="PATTERN" value="MariaDB.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -102,8 +104,35 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Card" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Card" />
+      <module name="fideliteCard" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Mariadb" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="mariadb.Mariadb" />
+      <module name="fideliteCard" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Card (1)" />
+        <item itemvalue="Application.Card" />
         <item itemvalue="Application.Mariadb" />
       </list>
     </recent_temporary>
@@ -116,7 +145,10 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1593848087621</updated>
-      <workItem from="1593848089500" duration="2452000" />
+      <workItem from="1593848089500" duration="3445000" />
+      <workItem from="1594322452188" duration="802000" />
+      <workItem from="1594324145073" duration="5408000" />
+      <workItem from="1594366964892" duration="4551000" />
     </task>
     <servers />
   </component>
@@ -133,15 +165,65 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="440" y="99" key="#Project_Structure" timestamp="1593848140266">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="440" y="98" key="#Project_Structure" timestamp="1594322554674">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="440" y="98" key="#Project_Structure/0.0.1920.1040/-1920.0.1920.1040/1920.3.1920.1040@0.0.1920.1040" timestamp="1594322554674" />
     <state x="440" y="99" key="#Project_Structure/0.0.1920.1050@0.0.1920.1050" timestamp="1593848140266" />
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1594324295221">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1920.0.1920.1040/1920.3.1920.1040@0.0.1920.1040" timestamp="1594324295221" />
+    <state x="577" y="319" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1594331570899">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="577" y="319" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040/-1920.0.1920.1040/1920.3.1920.1040@0.0.1920.1040" timestamp="1594331570899" />
+    <state x="743" y="385" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1594326510368">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="743" y="385" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040/-1920.0.1920.1040/1920.3.1920.1040@0.0.1920.1040" timestamp="1594326510368" />
+    <state x="707" y="364" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1594330979732">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="707" y="364" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/-1920.0.1920.1040/1920.3.1920.1040@0.0.1920.1040" timestamp="1594330979732" />
+    <state x="553" y="270" key="FileChooserDialogImpl" timestamp="1594330785121">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="553" y="270" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040/1920.3.1920.1040@0.0.1920.1040" timestamp="1594330785121" />
+    <state width="1877" height="337" key="GridCell.Tab.0.bottom" timestamp="1594372588737">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="337" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040/1920.3.1920.1040@0.0.1920.1040" timestamp="1594372588737" />
+    <state width="914" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1594322145348" />
+    <state width="1877" height="337" key="GridCell.Tab.0.center" timestamp="1594372588737">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="337" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040/1920.3.1920.1040@0.0.1920.1040" timestamp="1594372588737" />
+    <state width="914" height="285" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1594322145348" />
+    <state width="1877" height="337" key="GridCell.Tab.0.left" timestamp="1594372588737">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="337" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040/1920.3.1920.1040@0.0.1920.1040" timestamp="1594372588737" />
+    <state width="914" height="285" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1594322145348" />
+    <state width="1877" height="337" key="GridCell.Tab.0.right" timestamp="1594372588737">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="337" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040/1920.3.1920.1040@0.0.1920.1040" timestamp="1594372588737" />
+    <state width="914" height="285" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1594322145348" />
+    <state x="327" y="103" key="SettingsEditor" timestamp="1594331583399">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="327" y="103" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040/1920.3.1920.1040@0.0.1920.1040" timestamp="1594331583399" />
     <state x="776" y="303" key="chooseDestDirectoryDialog" timestamp="1593848235610">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="776" y="303" key="chooseDestDirectoryDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1593848235610" />
+    <state x="551" y="420" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1594327290588">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="551" y="420" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1040/-1920.0.1920.1040/1920.3.1920.1040@0.0.1920.1040" timestamp="1594327290588" />
   </component>
 </project>
