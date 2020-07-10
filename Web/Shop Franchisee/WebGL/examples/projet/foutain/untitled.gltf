@@ -1,0 +1,343 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.1.46",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                6,
+                7,
+                9
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "Fountain01_Fountain_0"
+        },
+        {
+            "mesh" : 1,
+            "name" : "Fountain01_Water_0"
+        },
+        {
+            "children" : [
+                0,
+                1
+            ],
+            "name" : "Fountain01",
+            "rotation" : [
+                -0.6903455853462219,
+                -0.1530459076166153,
+                -0.6903455257415771,
+                0.15304610133171082
+            ],
+            "scale" : [
+                463.8742370605469,
+                460.3399658203125,
+                331.8406677246094
+            ],
+            "translation" : [
+                -46.189205169677734,
+                -33.590545654296875,
+                -280.05218505859375
+            ]
+        },
+        {
+            "children" : [
+                2
+            ],
+            "name" : "RootNode"
+        },
+        {
+            "children" : [
+                3
+            ],
+            "name" : "39f11e4a104e485ab7196aa2fa31b3d9.fbx",
+            "rotation" : [
+                0.7071068286895752,
+                0,
+                0,
+                0.7071068286895752
+            ]
+        },
+        {
+            "children" : [
+                4
+            ],
+            "name" : "RootNode (model correction matrix)"
+        },
+        {
+            "children" : [
+                5
+            ],
+            "name" : "RootNode (gltf orientation matrix)",
+            "scale" : [
+                0.009999999776482582,
+                0.009999999776482582,
+                0.009999999776482582
+            ]
+        },
+        {
+            "mesh" : 2,
+            "name" : "Plane.2057_Bar.000_0"
+        },
+        {
+            "name" : "Node.001"
+        },
+        {
+            "children" : [
+                8
+            ],
+            "name" : "Node",
+            "rotation" : [
+                0.7071068286895752,
+                0,
+                0,
+                0.7071068286895752
+            ]
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                0,
+                0,
+                0
+            ],
+            "name" : "Fountain",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.5925679802894592,
+                    0.5617030262947083,
+                    0.474824994802475,
+                    1
+                ],
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.823941707611084
+            }
+        },
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                0,
+                0,
+                0
+            ],
+            "name" : "Water",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.1803400069475174,
+                    0.4324969947338104,
+                    0.9551079869270325,
+                    1
+                ],
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.9058928489685059
+            }
+        },
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                0,
+                0,
+                0
+            ],
+            "name" : "Bar.000",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.03521979972720146,
+                    0.03521979972720146,
+                    0.03521979972720146,
+                    1
+                ],
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.8736447691917419
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Fountain01_Fountain_0",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1
+                    },
+                    "indices" : 2,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Fountain01_Water_0",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 3,
+                        "NORMAL" : 4
+                    },
+                    "indices" : 5,
+                    "material" : 1
+                }
+            ]
+        },
+        {
+            "name" : "Plane.2057_Bar.000_0",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 6,
+                        "NORMAL" : 7
+                    },
+                    "indices" : 8,
+                    "material" : 2
+                }
+            ]
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 1590,
+            "max" : [
+                0.8778179883956909,
+                1.035171389579773,
+                1.4647365808486938
+            ],
+            "min" : [
+                -1.4031399488449097,
+                -1.0524225234985352,
+                -1.4312406778335571
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 1590,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5123,
+            "count" : 1680,
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5126,
+            "count" : 1368,
+            "max" : [
+                0.8260512351989746,
+                0.8330695033073425,
+                1.184374213218689
+            ],
+            "min" : [
+                -2.7285680770874023,
+                -0.8503206372261047,
+                -1.1508783102035522
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5126,
+            "count" : 1368,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 5,
+            "componentType" : 5123,
+            "count" : 1368,
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 6,
+            "componentType" : 5126,
+            "count" : 4,
+            "max" : [
+                0.27225160598754883,
+                0,
+                0.13102026283740997
+            ],
+            "min" : [
+                -0.27225160598754883,
+                0,
+                -0.13102026283740997
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 7,
+            "componentType" : 5126,
+            "count" : 4,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 8,
+            "componentType" : 5123,
+            "count" : 6,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 19080,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 19080,
+            "byteOffset" : 19080
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3360,
+            "byteOffset" : 38160
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 16416,
+            "byteOffset" : 41520
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 16416,
+            "byteOffset" : 57936
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 2736,
+            "byteOffset" : 74352
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 48,
+            "byteOffset" : 77088
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 48,
+            "byteOffset" : 77136
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 12,
+            "byteOffset" : 77184
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 77196,
+            "uri" : "untitled.bin"
+        }
+    ]
+}

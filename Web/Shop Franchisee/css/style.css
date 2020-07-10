@@ -1,0 +1,240 @@
+html, body {
+    height: 100%;
+}
+body {
+    background-color: rgb(78, 77, 78);
+    width: 100%;
+    display: table;
+}
+footer {
+    display: table-row;
+    height: 50px;
+}
+main {
+    height: 100%;
+    margin-top: 50px;
+}
+article.col-lg-12, aside.col-lg-12, article.col-lg-6, aside.col-lg-6, article.col-lg-4, aside.col-lg-4, article.col-lg-3, aside.col-lg-3 {
+    background-color: rgb(233, 236, 239);
+    padding: 25px 40px;
+    word-break: break-all;
+}
+
+textarea {
+    resize: none;
+    width: 100%;
+}
+article input, article select, article div {
+    margin-bottom: 10px;
+}
+#products {
+    height: 310px;
+}
+.container {
+    width: 100%;
+}
+.checkbox {
+    line-height: 22px;
+    margin-bottom: 15px;
+}
+input[type=file] {
+    display: block !important;
+    right: 1px;
+    top: 1px;
+    height: 34px;
+    opacity: 0;
+    width: 100%;
+    background: none;
+    position: absolute;
+    overflow: hidden;
+    z-index: 2;
+}
+[class*="col-"] {
+    background-color: rgb(78, 77, 78);
+    border: 10px solid rgb(78, 77, 78);
+    line-height: 35px;
+    text-align: justify;
+}
+.navbar-inverse {
+    border: none;
+    background-color: rgb(241, 171, 64);
+    color: rgb(38, 126, 184);
+}
+.nav {
+    font-size: 20px;
+}
+.form-control, .control-fileupload {
+    border-radius: 10px;
+}
+.form-control:focus {
+    box-shadow: inset 0 0 1px rgb(38, 126, 184),0 0 8px rgb(38, 126, 184) !important;
+    border-color: rgb(38, 126, 184) !important;
+}
+.form-group {
+    margin: 1.5px;
+}
+.glyphicon {
+    font-size: 25px;
+}
+.btn {
+    background-color: rgb(38, 126, 184);
+    border-radius: 10px;
+    border-color: rgb(38, 126, 184);
+    transition: all 0.3s;
+    color: white;
+}
+.btn:hover,
+.btn:active,
+.btn:focus {
+    background-color: rgba(38, 126, 184, 0.9);
+    border-color: rgba(38, 126, 184, 0.9);
+    color: white;
+    outline: none;
+}
+.btn:active:focus {
+    background-color: rgba(38, 126, 184, 0.9);
+    outline: none;
+}
+.clickNCook {
+    font-weight: 750;
+    font-size: 20px;
+}
+.footer {
+    bottom: 0;
+    background-color: rgb(241, 171, 64);
+    position: fixed;
+    width: 100%;
+    height:50px;
+    display: flex;
+}
+
+.background-image {
+    position:fixed;
+    opacity: 0.5;
+    top:0;
+    left:0;
+    z-index:0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.logo-image {
+    height: 100%;
+    width: 100%;
+    margin-bottom: 50px;
+}
+#img {
+    z-index: 1;
+}
+
+.radius {
+    border-radius: 50px;
+}
+
+.copyright {
+    font-size: 11px;
+    color: rgb(38, 126, 184);
+    padding: 15px 15px;
+    line-height: 20px;
+    width: 364px;
+}
+
+.footer
+.langs {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    order: 2;
+
+}
+.footer
+.text {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+
+}
+
+
+.lang {
+    padding: 10px 10px;
+    line-height: 20px;
+}
+
+.language:hover,
+.language:active,
+.language:focus, 
+.language {
+    color: #9d9d9d;
+}
+
+.button-lang:hover,
+.button-lang:active,
+.button-lang:focus,
+.button-lang:active:focus,
+.button-lang {
+    background-color: #222;
+    outline: none;
+    width: 38px;
+}
+
+.search{
+    display: inline-block;
+    background-color: white;
+    width: 200px;
+    height: 30px;
+    padding-top: -5px;
+    margin-right: 1px;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f6f6f6;
+  min-width: 230px;
+  overflow: auto;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+
+
+.show {
+    display: block;
+}
+p.copyright {
+    margin: 0;
+}
+canvas {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+@media screen and (max-width: 767px) {
+    #form {
+        width: 80%;
+    }
+}
+@media screen and (max-width: 930px) {
+    .nav {
+        font-size: 15px;
+    }
+    nav .glyphicon {
+        font-size: 18px;
+    }
+
+}
+@media screen and (max-width: 930px) {
+    .navbar-form .form-control {
+        width: 100px;
+    }
+}
